@@ -33,9 +33,6 @@ function EventPage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles for mobile</p>
         <Event {...event.results[0]} setEvent={setEvent} eventPage />
-        <Container className={appStyles.Content}>
-          Comments
-        </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         Popular profiles for desktop

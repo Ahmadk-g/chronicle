@@ -22,3 +22,7 @@
   .ButtonOutline:hover {
     color: #f85032;
   }
+
+  .TimeContainer {
+    align-items: flex-start !important;
+  }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/Event.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Button, Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, Card, Media, OverlayTrigger, Tooltip, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
@@ -158,17 +158,38 @@ const Event = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/events/${id}`}>
-        <Card.Img src={image} alt={title} />
+        <Card.Img
+          src={image}
+          alt={title}
+          className={styles.EventImage}
+        />
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {description && <Card.Text>{description}</Card.Text>}
-        {event_date && <Card.Text>{event_date}</Card.Text>}
-        {start_time && <Card.Text>{start_time}</Card.Text>}
-        {end_time && <Card.Text>{end_time}</Card.Text>}
-        {category && <Card.Text>{category}</Card.Text>}
-        {ticket_price && <Card.Text>{ticket_price}</Card.Text>}
-        {location && <Card.Text>{location}</Card.Text>}
+        <div className="d-flex justify-content-between">
+          <div className={styles.TimeContainer}>
+            <div className="d-flex">
+              <div>When:</div>
+              {event_date && <Card.Text className="ml-2">{event_date}</Card.Text>}
+            </div>
+            <div className="d-flex">
+              <div>Start:</div>
+              {start_time && <Card.Text className="ml-3">{start_time}</Card.Text>}
+            </div>
+            <div className="d-flex">
+              <div>End:</div>
+              {end_time && <Card.Text className="ml-4">{end_time}</Card.Text>}
+            </div>
+          </div>
+          <div>
+            {location && <Card.Text>{location}</Card.Text>}
+            <Badge pill variant="info">
+              {category && <Card.Text>{category}</Card.Text>}
+            </Badge>{' '}
+            {ticket_price && <Card.Text>{ticket_price}</Card.Text>}
+          </div>
+        </div>
         <div className={styles.PostBar}>
         {/* Interested Button */}
           {is_owner ? (
