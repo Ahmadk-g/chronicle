@@ -3,6 +3,7 @@
     border: 1px solid #dadadf;
     border-radius: 2px;
     margin-bottom: 16px;
+    /* max-width: 600px; */
     text-align: center;
   }
   
@@ -25,4 +26,9 @@
 
   .TimeContainer {
     align-items: flex-start !important;
+  }
+
+  .EventImage {
+    max-height: 600px;
+    object-fit: cover;
   }
