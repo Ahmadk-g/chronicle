@@ -54,9 +54,9 @@ const Event = (props) => {
             await axiosRes.delete(`/attendings/${attendance_id}/`);
             // Update the interested count and reset attendanceStatus
             setAttendanceStatus(null);
-            props.setEvent(prevEvent => ({
-              ...prevEvent,
-              results: prevEvent.results.map(event => 
+            props.setEvents(prevEvents => ({
+              ...prevEvents,
+              results: prevEvents.results.map(event => 
                 event.id === id
                   ? { ...event, interested_count: event.interested_count - 1 }
                   : event
@@ -67,9 +67,9 @@ const Event = (props) => {
             const {data} = await axiosRes.post(`/attendings/`, { event: id, status: 'interested' });
             // Update the interested count and set attendanceStatus
             setAttendanceStatus("interested");
-            props.setEvent(prevEvent => ({
-              ...prevEvent,
-              results: prevEvent.results.map(event => 
+            props.setEvents(prevEvents => ({
+              ...prevEvents,
+              results: prevEvents.results.map(event => 
                 event.id === id
                   ? { ...event, interested_count: event.interested_count + 1, attendance_id: data.id }
                   : event
@@ -88,9 +88,9 @@ const Event = (props) => {
             await axiosRes.delete(`/attendings/${attendance_id}/`);
             // Update the attending count and reset attendanceStatus
             setAttendanceStatus(null);
-            props.setEvent(prevEvent => ({
-              ...prevEvent,
-              results: prevEvent.results.map(event =>
+            props.setEvents(prevEvents => ({
+              ...prevEvents,
+              results: prevEvents.results.map(event =>
                 event.id === id
                   ? { ...event, attending_count: event.attending_count - 1 }
                   : event
@@ -100,9 +100,9 @@ const Event = (props) => {
             const {data} = await axiosRes.post(`/attendings/`, { event: id, status: 'attending' });
             // Update the attending count and set attendanceStatus
             setAttendanceStatus("attending");
-            props.setEvent(prevEvent => ({
-              ...prevEvent,
-              results: prevEvent.results.map(event =>
+            props.setEvents(prevEvents => ({
+              ...prevEvents,
+              results: prevEvents.results.map(event =>
                 event.id === id
                   ? { ...event, attending_count: event.attending_count + 1, attendance_id: data.id }
                   : event
@@ -120,9 +120,9 @@ const Event = (props) => {
           await axiosRes.delete(`/attendings/${attendance_id}/`);
           const {data} = await axiosRes.post(`/attendings/`, { event: id, status: "attending" });
           setAttendanceStatus("attending");
-          props.setEvent(prevEvent => ({
-            ...prevEvent,
-            results: prevEvent.results.map(event =>
+          props.setEvents(prevEvents => ({
+            ...prevEvents,
+            results: prevEvents.results.map(event =>
               event.id === id
                 ? { ...event, interested_count: event.interested_count - 1, attending_count: event.attending_count + 1, attendance_id: data.id }
                 : event
@@ -132,9 +132,9 @@ const Event = (props) => {
           await axiosRes.delete(`/attendings/${attendance_id}/`);
           const {data} = await axiosRes.post(`/attendings/`, { event: id, status: "interested" });
           setAttendanceStatus("interested");
-          props.setEvent(prevEvent => ({
-            ...prevEvent,
-            results: prevEvent.results.map(event =>
+          props.setEvents(prevEvents => ({
+            ...prevEvents,
+            results: prevEvents.results.map(event =>
               event.id === id
                 ? { ...event, attending_count: event.attending_count - 1, interested_count: event.interested_count + 1, attendance_id: data.id }
                 : event

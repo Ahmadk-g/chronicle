@@ -69,7 +69,7 @@ const NavBar = () => {
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+        <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
       </NavLink>
     </>
   );
@@ -114,6 +114,14 @@ const NavBar = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
+            <NavLink
+              exact
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/events"
+            >
+              <i class="fa-solid fa-calendar"></i>Events
+            </NavLink>
             <NavLink
               exact
               className={styles.NavLink}

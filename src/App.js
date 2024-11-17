@@ -11,6 +11,7 @@ import PostPage from './pages/posts/PostPage';
 import EventPage from './pages/events/EventPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import PostsPage from './pages/posts/PostsPage';
+import EventsPage from './pages/events/EventsPage';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -45,6 +46,15 @@ function App() {
                   <PostsPage
                     message="No results found. Adjust the search keyword or like a post."
                     filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+                  />
+                )} 
+              />
+              <Route
+                exact
+                path="/events"
+                render={() => (
+                  <EventsPage
+                    message="No results found. Adjust the search keyword"
                   />
                 )} 
               />
