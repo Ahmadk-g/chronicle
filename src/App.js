@@ -14,6 +14,7 @@ import PostsPage from './pages/posts/PostsPage';
 import EventsPage from './pages/events/EventsPage';
 import PostEditForm from './pages/posts/PostEditForm';
 import EventEditForm from './pages/events/EventEditForm';
+import NotificationsPage from './pages/notifications/NotificationsPage';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -68,6 +69,7 @@ function App() {
           <Route exact path="/events/:id" render={() => <EventPage />} />
           <Route exact path="/posts/:id/edit" render ={() => <PostEditForm />} />
           <Route exact path="/events/:id/edit" render ={() => <EventEditForm />} />
+          <Route exact path="/notifications" render ={() => <NotificationsPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
