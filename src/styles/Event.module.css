@@ -12,11 +12,11 @@
     margin: 0 0;
   }
   
-  .Button {
+  .ButtonActive {
     color: #f85032;
   }
   
-  .Button:hover {
+  .ButtonActive:hover {
     color: #2142b2;
   }
   

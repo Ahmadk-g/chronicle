@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Event.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Button, Card, Media, OverlayTrigger, Tooltip, Badge } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Event = (props) => {
   const {
@@ -30,8 +31,22 @@ const Event = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
 
   const [attendanceStatus, setAttendanceStatus] = useState(null);
+
+  const handleEdit = () => {
+    history.push(`/events/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/events/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (attendance_id) {
@@ -153,7 +168,12 @@ const Event = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && eventPage && "..."}
+            {is_owner && eventPage && (
+              <MoreDropdown 
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Media>
       </Card.Body>
@@ -169,27 +189,28 @@ const Event = (props) => {
         {description && <Card.Text>{description}</Card.Text>}
         <div className="d-flex justify-content-between">
           <div className={styles.TimeContainer}>
+            Date
             <div className="d-flex">
-              <div>When:</div>
               {event_date && <Card.Text className="ml-2">{event_date}</Card.Text>}
             </div>
             <div className="d-flex">
-              <div>Start:</div>
-              {start_time && <Card.Text className="ml-3">{start_time}</Card.Text>}
-            </div>
-            <div className="d-flex">
-              <div>End:</div>
-              {end_time && <Card.Text className="ml-4">{end_time}</Card.Text>}
+            {(start_time || end_time) && (
+              <Card.Text className="ml-2">
+                {start_time && `${start_time}`}
+                {start_time && end_time && ' - '}
+                {end_time && `${end_time}`}
+              </Card.Text>
+            )}
             </div>
           </div>
           <div>
-            {location && <Card.Text>{location}</Card.Text>}
             <Badge pill variant="info">
               {category && <Card.Text>{category}</Card.Text>}
             </Badge>{' '}
             {ticket_price && <Card.Text>{ticket_price}</Card.Text>}
           </div>
         </div>
+        {location && <Card.Text><i class="fa-solid fa-location-dot"></i>{location}</Card.Text>}
         <div className={styles.PostBar}>
         {/* Interested Button */}
           {is_owner ? (
@@ -202,7 +223,7 @@ const Event = (props) => {
               </Button>
             </OverlayTrigger>
           ) : attendance_id && attendanceStatus === "interested" ? (
-            <Button className={styles.Button} onClick={handleInterested}>
+            <Button className={`${styles.ButtonActive}`} onClick={handleInterested}>
               Interested
             </Button>
           ) : attendance_id && attendanceStatus === "attending"? (
@@ -235,7 +256,7 @@ const Event = (props) => {
               </Button>
             </OverlayTrigger>
           ) : attendance_id && attendanceStatus === "attending"? (
-            <Button className={styles.Button} onClick={handleAttending}>
+            <Button className={styles.ButtonActive} onClick={handleAttending}>
               Attending
             </Button>
           ) : attendance_id && attendanceStatus === "interested"? (
