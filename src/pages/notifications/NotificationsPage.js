@@ -35,7 +35,7 @@ function NotificationsPage() {
   }, []);
 
   return (
-    <Container>
+    <Container className={appStyles.Content}>
       {hasLoaded ? (
         <>
           {notifications.results.length ? (
