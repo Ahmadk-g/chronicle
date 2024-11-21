@@ -18,8 +18,10 @@ import btnStyles from "../../styles/Button.module.css";
 
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/AxiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function EventCreateForm() {
+  useRedirect("loggesOut");
   const [errors, setErrors] = useState({});
 
   const [eventData, setEventData] = useState({
