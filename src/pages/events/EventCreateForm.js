@@ -21,7 +21,7 @@ import { axiosReq } from "../../api/AxiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function EventCreateForm() {
-  useRedirect("loggesOut");
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [eventData, setEventData] = useState({
