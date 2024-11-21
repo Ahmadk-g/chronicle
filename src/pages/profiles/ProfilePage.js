@@ -21,12 +21,15 @@ import {
 import { Button, Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
+import Event from "../events/Event";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
+  const [profileEvents, setProfileEvents] = useState({ results: [] });
+  const [activeTab, setActiveTab] = useState("posts"); // show posts when landing on page
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
@@ -40,16 +43,18 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profilePosts }] =
+        const [{ data: pageProfile }, { data: profilePosts }, { data: profileEvents }] =
           await Promise.all([
             axiosReq.get(`/profiles/${id}/`),
             axiosReq.get(`/posts/?owner__profile=${id}`),
+            axiosReq.get(`/events/?owner__profile=${id}`),
           ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         setProfilePosts(profilePosts);
+        setProfileEvents(profileEvents);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -109,10 +114,29 @@ function ProfilePage() {
     </>
   );
 
-  const mainProfilePosts = (
+  const profileTabs = (
+    <div className="text-center my-3">
+      <Button
+        className={`${btnStyles.Button} ${
+          activeTab === "posts" ? btnStyles.Active : ""
+        } mx-2`}
+        onClick={() => setActiveTab("posts")}
+      >
+        {profile?.owner}'s Posts
+      </Button>
+      <Button
+        className={`${btnStyles.Button} ${
+          activeTab === "events" ? btnStyles.Active : ""
+        } mx-2`}
+        onClick={() => setActiveTab("events")}
+      >
+        {profile?.owner}'s Events
+      </Button>
+    </div>
+  );
+
+  const mainProfileContent = activeTab === "posts" ? (
     <>
-      <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
@@ -131,6 +155,26 @@ function ProfilePage() {
         />
       )}
     </>
+  ) : (
+    <>
+      <hr />
+      {profileEvents.results.length ? (
+        <InfiniteScroll
+          children={profileEvents.results.map((event) => (
+            <Event key={event.id} {...event} setEvents={setProfileEvents} />
+          ))}
+          dataLength={profileEvents.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profileEvents.next}
+          next={() => fetchMoreData(profileEvents, setProfileEvents)}
+        />
+      ) : (
+        <Asset
+          src={NoResults}
+          message={`No results found, ${profile?.owner} hasn't created any events yet.`}
+        />
+      )}
+    </>
   );
 
   return (
@@ -141,7 +185,8 @@ function ProfilePage() {
           {hasLoaded ? (
             <>
               {mainProfile}
-              {mainProfilePosts}
+              {profileTabs} {/* Add tabs for toggling */}
+              {mainProfileContent}
             </>
           ) : (
             <Asset spinner />
