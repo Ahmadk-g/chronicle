@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import logo from '../assets/logo.png'
 import styles from '../styles/NavBar.module.css'
+import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
@@ -11,11 +12,43 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 
+
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
+  const [notifications, setNotifications] = useState([]);
+  const [unreadNotifications, setUnreadNotifications] = useState(0);  // State to store unread notification count
+
+  const { pathname } = useLocation();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      if (!currentUser) return; 
+      try {
+        const { data } = await axios.get(`/notifications/`);  // Fetch unread notifications
+        setNotifications(data.results);
+        console.log("Fetched Notifications:", data.results);
+
+        const unreadCount = data.results.filter(notifications => !notifications.is_read).length;
+        console.log(unreadCount)
+        setUnreadNotifications(unreadCount);  // Update the unread notification count
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchNotifications();
+    const timer = setTimeout(() => {
+      fetchNotifications();
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentUser, pathname]);
+  
 
   const handleSignOut = async () => {
     try {
@@ -62,6 +95,35 @@ const NavBar = () => {
       >
         <i className="fas fa-heart"></i>Liked
       </NavLink>
+      {/* Notification Icon */}
+      {/* Notification Icon */}
+      <NavLink
+        className={`${styles.NavLink} ${unreadNotifications > 0 ? styles.HasUnread : ""}`}
+        activeClassName={styles.Active}
+        to="/notifications"
+      >
+        <div className={styles.BellContainer}>
+          <i className={`fas fa-bell ${unreadNotifications > 0 ? styles.HasUnread : ""}`} />
+          {unreadNotifications > 0 && (
+            <span className={styles.NotificationCount}>{unreadNotifications}</span>
+          )}
+        </div>
+      </NavLink>
+      {/* <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/notifications"
+      >
+        <div className={styles.BellContainer}>
+          <i
+            className={` fas fa-bell ${styles.NavLink} ${unreadNotifications > 0 ? styles.HasUnread : ""}`}
+            // className="fas fa-bell"
+          ></i>
+          {unreadNotifications > 0 && (
+            <span className={styles.NotificationCount}>{unreadNotifications}</span>
+          )}
+        </div>
+      </NavLink> */}
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <i className="fas fa-sign-out-alt"></i>Sign out
       </NavLink>

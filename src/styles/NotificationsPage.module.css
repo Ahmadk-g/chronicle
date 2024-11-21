@@ -1,0 +1,15 @@
+.Notification {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .Notification p {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .Date {
+    display: block;
+    font-size: 0.8rem;
+    color: gray;
+  }

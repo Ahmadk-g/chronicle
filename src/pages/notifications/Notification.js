@@ -3,10 +3,6 @@ import { Card } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 
-
-
-
-
 const Notification = (props) => {
   const {
     id,
@@ -24,20 +20,20 @@ const Notification = (props) => {
     created_at
   } = props
 
-   let message = "";
-   if (notification_type === "like") {
-     message = ` liked your post`;
-   } else if (notification_type === "comment") {
-     message = ` commented on your post`;
-   } else if (notification_type === "interested") {
-     message = ` is interested in your event`;
-   } else if (notification_type === "attending") {
-     message = ` is attending your event`;
-   } else if (notification_type === "follow") {
-     message = ` followed you`;
-   }
+  let message = "";
+  if (notification_type === "like") {
+    message = ` liked your post`;
+  } else if (notification_type === "comment") {
+    message = ` commented on your post`;
+  } else if (notification_type === "interested") {
+    message = ` is interested in your event`;
+  } else if (notification_type === "attending") {
+    message = ` is attending your event`;
+  } else if (notification_type === "follow") {
+    message = ` followed you`;
+  }
 
-   console.log(is_read)
+  console.log(is_read)
 
 return (
     <Card className="mb-2">

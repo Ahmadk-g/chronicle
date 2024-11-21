@@ -10,3 +10,24 @@
 .Active i {
   color: #2142b2;
 }
+
+
+.BellContainer {
+  position: relative;
+  display: inline-block;  /* Ensures the bell icon and count are inline */
+}
+
+.HasUnread {
+  color: red;
+}
+
+.NotificationCount {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  /* background-color: red; */
+  color: blue;
+  border-radius: 50%;
+  padding: 3px 7px;
+  font-size: 12px;
+}
