@@ -37,7 +37,7 @@ const Notification = (props) => {
 
 return (
     <Card className="mb-2">
-        <Card.Body>
+        <Card.Body style={{padding: '0.25rem'}}>
           <div className="my-1 d-flex align-items-center">
             <div>
               <Link to={`/profiles/${notifier_id}`} className="align-self-center">
@@ -63,10 +63,8 @@ return (
                 </Link>
               </div>
             )}
-          </div>
-          <div className="d-flex">
-            <span className="ms-auto">{created_at}</span>
-            {/* <span>{String(is_read)}</span> */}
+
+          <span className="ms-auto" style={{position: 'absolute', bottom: '5px', right: '20px'}}>{created_at}</span>
           </div>
         </Card.Body>
     </Card>

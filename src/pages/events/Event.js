@@ -160,7 +160,7 @@ const Event = (props) => {
 
   return (
     <Card className={styles.Post}>
-      <Card.Body>
+      <Card.Body className={styles.PostCardHeader}>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profile_image} height={55} />
@@ -186,8 +186,9 @@ const Event = (props) => {
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {location && <Card.Text><i class="fa-solid fa-location-dot"></i>{location}</Card.Text>}
         {description && <Card.Text>{description}</Card.Text>}
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-around">
           <div className={styles.TimeContainer}>
             Date
             <div className="d-flex">
@@ -204,80 +205,91 @@ const Event = (props) => {
             </div>
           </div>
           <div>
-            <Badge pill variant="info">
+            <Badge pill className={styles.BadgeEventCard}>
               {category && <Card.Text>{category}</Card.Text>}
             </Badge>{' '}
             {ticket_price && <Card.Text>{ticket_price}</Card.Text>}
           </div>
         </div>
-        {location && <Card.Text><i class="fa-solid fa-location-dot"></i>{location}</Card.Text>}
-        <div className={styles.PostBar}>
+        <div className="d-flex justify-content-end">
         {/* Interested Button */}
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't mark your on own event as interested!</Tooltip>}
-            >
-              <Button variant="secondary" disabled>
-                Interested
-              </Button>
-            </OverlayTrigger>
-          ) : attendance_id && attendanceStatus === "interested" ? (
-            <Button className={`${styles.ButtonActive}`} onClick={handleInterested}>
-              Interested
-            </Button>
-          ) : attendance_id && attendanceStatus === "attending"? (
-            <Button onClick={() => handleSwitch("interested")}>
-              Interested
-            </Button>
-          ) : currentUser ? (
-            <Button className={styles.ButtonOutline}  onClick={handleInterested}>
-              Interested
-            </Button>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to mark attendance!</Tooltip>}
-            >
-              <Button variant="info" onClick={() => {}}>
-                Interested
-              </Button>
-            </OverlayTrigger>
-          )}
-          {interested_count}
-          {/* Attending Button */}
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't mark your on own event as attending!</Tooltip>}
-            >
-              <Button variant="secondary" disabled>
-                Attending
-              </Button>
-            </OverlayTrigger>
-          ) : attendance_id && attendanceStatus === "attending"? (
-            <Button className={styles.ButtonActive} onClick={handleAttending}>
-              Attending
-            </Button>
-          ) : attendance_id && attendanceStatus === "interested"? (
-                <Button onClick={() => handleSwitch("attending")}>
-                  Attending
+          <div className="d-flex">
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't mark your on own event as interested!</Tooltip>}
+              >
+                <Button className={styles.ButtonDisabled} variant="secondary" disabled>
+                  Interested
+                  <span style={{marginLeft: '10px'}}>{interested_count}</span>
                 </Button>
-          ) : currentUser ? (
-            <Button className={styles.ButtonOutline} onClick={handleAttending}>
-              Attending
-            </Button>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to mark attendance!</Tooltip>}
-            >
-              <Button variant="info" onClick={() => {}}>
-                Attending
+              </OverlayTrigger>
+            ) : attendance_id && attendanceStatus === "interested" ? (
+              <Button className={`${styles.ButtonActive}`} onClick={handleInterested}>
+                Interested
+                <span style={{marginLeft: '10px'}}>{interested_count}</span>
               </Button>
-            </OverlayTrigger>
-          )}
-          {attending_count}
+            ) : attendance_id && attendanceStatus === "attending"? (
+              <Button className={styles.ButtonOutline} onClick={() => handleSwitch("interested")}>
+                Interested
+                <span style={{marginLeft: '10px'}}>{interested_count}</span>
+              </Button>
+            ) : currentUser ? (
+              <Button className={styles.ButtonOutline} onClick={handleInterested}>
+                Interested
+                <span style={{marginLeft: '10px'}}>{interested_count}</span>
+              </Button>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to mark attendance!</Tooltip>}
+              >
+                <Button className={styles.ButtonOutline} onClick={() => {}}>
+                  Interested
+                  <span style={{marginLeft: '10px'}}>{interested_count}</span>
+                </Button>
+              </OverlayTrigger>
+            )}
+          </div>
+          {/* Attending Button */}
+          <div className="d-flex">
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't mark your on own event as attending!</Tooltip>}
+              >
+                <Button className={styles.ButtonDisabled} variant="secondary" disabled>
+                  Attending
+                  <span style={{marginLeft: '10px'}}>{attending_count}</span>
+                </Button>
+              </OverlayTrigger>
+            ) : attendance_id && attendanceStatus === "attending"? (
+              <Button className={styles.ButtonActive} onClick={handleAttending}>
+                Attending
+                <span style={{marginLeft: '10px'}}>{attending_count}</span>
+              </Button>
+            ) : attendance_id && attendanceStatus === "interested"? (
+                  <Button className={styles.ButtonOutline} onClick={() => handleSwitch("attending")}>
+                    Attending 
+                    <span style={{marginLeft: '15px'}}>{attending_count}</span>
+                  </Button>
+            ) : currentUser ? (
+              <Button className={styles.ButtonOutline} onClick={handleAttending}>
+                Attending 
+                <span style={{marginLeft: '15px'}}>{attending_count}</span>
+              </Button>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to mark attendance!</Tooltip>}
+              >
+                <Button className={styles.ButtonOutline} onClick={() => {}}>
+                  Attending
+                  <span style={{marginLeft: '15px'}}>{attending_count}</span>
+                </Button>
+              </OverlayTrigger>
+            )}
+          </div>
         </div>
       </Card.Body>
     </Card>

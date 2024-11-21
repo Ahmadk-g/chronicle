@@ -3,13 +3,53 @@
   border: 1px solid #dadadf;
 }
 
+.NavBarContainer {
+  max-width: 1500px;
+}
+
 .NavLink {
   padding: 5px;
 }
 
 .Active i {
-  color: #2142b2;
+  color: #802ac7;
 }
+
+.custom-toggle::after {
+  display: none !important;
+}
+
+.PlusToggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* Adjust as needed */
+}
+.PlusToggle:hover {
+  color: '#ff76f4';
+}
+.AvatarToggle {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.AvatarMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Hide {
+  display: none;
+}
+
+.Show {
+  display: flex;
+}
+
 
 
 .BellContainer {
