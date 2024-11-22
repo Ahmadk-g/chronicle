@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/AxiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
 
 const Post = (props) => {
   const {
@@ -27,6 +28,8 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -93,7 +96,7 @@ const Post = (props) => {
             {is_owner && postPage && (
               <MoreDropdown
                 handleEdit={handleEdit}
-                handleDelete={handleDelete}
+                handleDelete={() => setShowDeleteModal(true)}
               />
             )}
           </div>
@@ -145,6 +148,12 @@ const Post = (props) => {
           {comments_count}
         </div>
       </Card.Body>
+      {/* Delete confirmation modal */}
+      <DeleteConfirmationModal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onDelete={handleDelete}
+      />
     </Card>
   );
 };

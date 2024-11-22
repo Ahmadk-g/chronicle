@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import CommentEditForm from "./CommentEditForm";
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
 
 import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -22,6 +23,8 @@ const Comment = (props) => {
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -41,7 +44,11 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {}
+      setShowDeleteModal(false);
+    } catch (err) {
+      console.log(err)
+      setShowDeleteModal(false);
+    }
   };
 
   return (
@@ -70,10 +77,15 @@ const Comment = (props) => {
         {is_owner && !showEditForm && (
           <MoreDropdown
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
+            handleDelete={() => setShowDeleteModal(true)}
           />
         )}
       </Media>
+      <DeleteConfirmationModal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onDelete={handleDelete}
+      />
     </>
   );
 };

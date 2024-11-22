@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
 
 const Event = (props) => {
   const {
@@ -33,6 +34,7 @@ const Event = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [attendanceStatus, setAttendanceStatus] = useState(null);
 
   const handleEdit = () => {
@@ -178,7 +180,7 @@ const Event = (props) => {
             {is_owner && eventPage && (
               <MoreDropdown 
                 handleEdit={handleEdit}
-                handleDelete={handleDelete}
+                handleDelete={() => setShowDeleteModal(true)}
               />
             )}
           </div>
@@ -299,6 +301,11 @@ const Event = (props) => {
           </div>
         </div>
       </Card.Body>
+      <DeleteConfirmationModal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onDelete={handleDelete}
+      />
     </Card>
   );
 };
