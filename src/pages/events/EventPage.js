@@ -8,10 +8,13 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/AxiosDefaults";
 import Event from "./Event";
+import Asset from "../../components/Asset";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function EventPage() {
   const { id } = useParams();
   const [event, setEvent] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -20,22 +23,33 @@ function EventPage() {
           axiosReq.get(`/events/${id}`),
         ]);
         setEvent({ results: [event] });
+        setHasLoaded(true);
         console.log(event);
       } catch (err) {
         console.log(err);
       }
     };
+
+    setHasLoaded(false);
     handleMount();
   }, [id]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles for mobile</p>
-        <Event {...event.results[0]} setEvents={setEvent} eventPage />
+        <PopularProfiles mobile />
+        {hasLoaded ? (
+          <>
+            <Event {...event.results[0]} setEvents={setEvent} eventPage />
+          </>
+        ) : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+        )}
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        Popular profiles for desktop
+        <PopularProfiles />
       </Col>
     </Row>
   );
