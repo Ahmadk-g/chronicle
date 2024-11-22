@@ -42,7 +42,14 @@ const Event = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/events/${id}/`);
-      history.goBack();
+
+      // Check if the user came from the edit page
+      const previousPage = history.location.state?.from
+      if (previousPage === `/events/${id}/edit` || previousPage === `/events/create`) {
+        history.push("/")
+      } else {
+        history.goBack();
+      }
     } catch (err) {
       console.log(err);
     }

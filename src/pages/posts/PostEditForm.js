@@ -74,7 +74,7 @@ function PostEditForm() {
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}`);
+      history.push(`/posts/${id}`, { from: history.location.pathname });
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

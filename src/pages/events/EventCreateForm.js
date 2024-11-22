@@ -100,7 +100,7 @@ function EventCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/events/", formData);
-      history.push(`/events/${data.id}`);
+      history.push(`/events/${data.id}`, { from: history.location.pathname });
     } catch (err) {
     //   console.log(err);
       console.log("Error submitting form:", err); // Log the error response

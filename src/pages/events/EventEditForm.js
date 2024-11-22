@@ -121,7 +121,7 @@ function EventEditForm() {
 
     try {
       await axiosReq.put(`/events/${id}/`, formData);
-      history.push(`/events/${id}`);
+      history.push(`/events/${id}`, { from: history.location.pathname });
     } catch (err) {
     //   console.log(err);
       console.log("Error submitting form:", err); // Log the error response

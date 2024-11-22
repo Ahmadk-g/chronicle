@@ -35,7 +35,14 @@ const Post = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
-      history.goBack();
+
+      // Check if the user came from the edit page
+      const previousPage = history.location.state?.from
+      if (previousPage === `/posts/${id}/edit` || previousPage === `/posts/create`) {
+        history.push("/")
+      } else {
+        history.goBack();
+      }
     } catch (err) {
       console.log(err);
     }
