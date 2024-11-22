@@ -49,6 +49,11 @@ function PostEditForm() {
       ...postData,
       [event.target.name]: event.target.value,
     });
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [event.target.name]: null,
+    }));
   };
 
   const handleChangeImage = (event) => {
@@ -58,6 +63,11 @@ function PostEditForm() {
         ...postData,
         image: URL.createObjectURL(event.target.files[0]),
       });
+
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        image: null,
+      }));
     }
   };
 

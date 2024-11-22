@@ -39,6 +39,12 @@ function PostCreateForm() {
       ...postData,
       [event.target.name]: event.target.value,
     });
+
+    // Clear the error for the specific field
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [event.target.name]: null,
+    }));
   };
 
   const handleChangeImage = (event) => {
@@ -48,6 +54,12 @@ function PostCreateForm() {
         ...postData,
         image: URL.createObjectURL(event.target.files[0]),
       });
+
+    // Clear the error for the image field
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      image: null,
+    }));
     }
   };
 

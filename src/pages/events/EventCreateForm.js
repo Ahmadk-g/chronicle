@@ -60,6 +60,11 @@ function EventCreateForm() {
       ...eventData,
       [event.target.name]: event.target.value,
     });
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [event.target.name]: null,
+    }));
   };
 
   const handleChangeImage = (event) => {
@@ -69,6 +74,11 @@ function EventCreateForm() {
         ...eventData,
         image: URL.createObjectURL(event.target.files[0]),
       });
+
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        image: null,
+      }));
     }
   };
 
