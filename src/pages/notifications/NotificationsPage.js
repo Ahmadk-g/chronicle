@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { axiosReq } from "../../api/AxiosDefaults";
 import Notification from "./Notification";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function NotificationsPage() {
   const [notifications, setNotifications] = useState({ results: [] });
@@ -35,23 +36,35 @@ function NotificationsPage() {
   }, []);
 
   return (
-    <Container className={appStyles.Content}>
-      {hasLoaded ? (
-        <>
-          {notifications.results.length ? (
-            notifications.results.map((notification) => (
-              <Notification key={notification.id} {...notification} setNotifications={setNotifications} />
-            ))
+    <Row className="h-100">
+      <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <div className="text-center mb-3" >
+          <h2>
+            Notifications
+          </h2>
+        </div>
+        <Container className={appStyles.Content} style={{maxWidth: "720px"}}>
+          {hasLoaded ? (
+            <>
+              {notifications.results.length ? (
+                notifications.results.map((notification) => (
+                  <Notification key={notification.id} {...notification} setNotifications={setNotifications} />
+                ))
+              ) : (
+                <p>No notifications found.</p>
+              )}
+            </>
           ) : (
-            <p>No notifications found.</p>
+            <Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>
           )}
-        </>
-      ) : (
-        <Container className={appStyles.Content}>
-          <Asset spinner />
         </Container>
-      )}
-    </Container>
+      </Col>
+      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
+      </Col>
+    </Row>
   );
 }
 

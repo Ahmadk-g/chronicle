@@ -25,6 +25,14 @@ function PostsPage({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
+  //   // Determine the heading based on pathname or filter
+  // const getPageHeading = () => {
+  //   if (pathname === "/feed") return "Your Feed";
+  //   if (pathname === "/liked") return "Posts You Liked";
+  //   return "Posts"; // Default heading
+  // };
+
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -49,6 +57,9 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+        {/* <div className="text-center mb-3" >
+          <h2>{getPageHeading()}</h2>
+        </div> */}
         <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form

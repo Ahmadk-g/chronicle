@@ -13,15 +13,17 @@ h5 {
 }
 
 .Heart {
-  color: #f85032;
+  /* color: #f85032; */
+  color: #ff76f4;
 }
 
 .Heart:hover {
-  color: #2142b2;
+  /* color: #2142b2; */
+  color: #ff76f4;
 }
 
 .HeartOutline:hover {
-  color: #f85032;
+  color: #ff76f4;
 }
 
 .PostImage {

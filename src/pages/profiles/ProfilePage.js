@@ -121,22 +121,25 @@ function ProfilePage() {
   );
 
   const profileTabs = (
-    <div className="text-center my-3">
+    <div className={`${styles.ProfileTabs} my-3 `}>
       <Button
-        className={`${btnStyles.Button} ${
-          activeTab === "posts" ? btnStyles.Active : ""
+        className={`${styles.Button} ${
+          activeTab === "posts" ? styles.ButtonActive : ""
         } mx-2`}
         onClick={() => setActiveTab("posts")}
       >
-        {profile?.owner}'s Posts
+        <i className= {`${styles.icon} fa-solid fa-stream`}></i>
+        
+        Posts
       </Button>
       <Button
-        className={`${btnStyles.Button} ${
-          activeTab === "events" ? btnStyles.Active : ""
+        className={`${styles.Button} ${
+          activeTab === "events" ? styles.ButtonActive : ""
         } mx-2`}
         onClick={() => setActiveTab("events")}
       >
-        {profile?.owner}'s Events
+        <i className= {`${styles.icon} fa-solid fa-calendar`}></i>
+        Events
       </Button>
     </div>
   );

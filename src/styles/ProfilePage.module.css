@@ -5,6 +5,76 @@
   margin: 4px;
 }
 
+.icon {
+  color: #555555;
+  font-size: 1rem;
+  padding: 7px;
+  vertical-align: middle;
+}
+
+.icon:hover{
+  color: #212529;
+}
+
+.Button {
+  font-size: 0.8rem;
+  background-color: rgb(255, 255, 255);
+  color: rgb(86, 86, 86);
+  align-self: center;
+  border-radius: 0px;
+  border-color: transparent;
+  border-top: 2px solid transparent;
+  padding: 4px 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  min-width: 75px;
+}
+
+.Button:hover {
+  /* opacity: 0.8; */
+  border-color: transparent;
+  background-color: #ffffff;
+  border-color: transparent;
+  border-bottom: 1px solid #ff76f4 !important;
+  color: #212529;
+  cursor: pointer;
+}
+
+.Button:hover:active {
+  background-color: #ffffff !important;
+  border-color: transparent;
+  border-bottom: 1px solid #ff76f4 !important;
+  color: #212529;
+}
+
+.Button:active {
+  background-color: #ffffff !important;
+  border-color: transparent;
+  border-bottom: 1px solid #ff76f4 !important;
+  color: #212529;
+
+}
+
+.ButtonActive{
+  background-color: #ffffff !important;
+  border-color: transparent;
+  border-bottom: 1px solid #ff76f4 !important;
+  color: #212529 !important;
+}
+
+.Button:focus {
+  border-color: transparent;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #ff76f4 !important;
+  box-shadow: none;
+
+}
+
+.ProfileTabs {
+  text-align: center !important;
+  margin-bottom: -1rem !important;
+}
+
 @media screen and (max-width: 991px) {
   .ProfileImage {
     width: 250px;
