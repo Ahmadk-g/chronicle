@@ -169,6 +169,105 @@ Chronicle is a modern social media platform designed to bring communities closer
 11. **Search Functionality**
     - Global search bar for posts and events
 
+## Skeleton & Surface Planes
+
+### WireFrames
+
+.
+.
+.
+
+##  Database Schema - Entity relationship Diagram
+
+### **Entity Relationship Diagram (ERD**)
+The ERD visually maps out the relationships and dependencies among various entities in the system. It provides a clear representation of how users interact with posts, events, and other users, while also highlighting the notification and social engagement processes. This diagram acts as a blueprint for developers, making it easier to understand the data flow and identify key relationships within the application. 
+
+[dbdiagram.io](https://dbdiagram.io) was utilized to design the ERD.
+
+![Chronicle ERD](documentation/erd.png)
+
+
+### **Key Model Relationships**
+
+- Users:
+  - **Profile**: Extends the default Django User model with additional fields for personalization.
+  - **Followers**: Creates a many-to-many relationship, enabling users to follow and unfollow one another, fostering a social network.
+
+- Posts:
+  - **User-generated content**: Posts include text, images, and multimedia to encourage user engagement.
+  - **Likes and Comments**: Linked to Likes and Comments for user interaction with posts, enabling likes and threaded discussions.
+  - **Notifications**: Post interactions trigger notifications, keeping users updated on likes, comments, and more.
+  - **Timestamps**: Tracks creation and update times, ensuring content freshness.
+
+- Followers
+  - **User Connections**: Manages who follows whom by using two ForeignKey fields, creating a many-to-many relationship between users.
+  - **Notifications**: Following users triggers notifications, alerting new followers and activity.
+  - **Dynamic Relationship**: Users can follow and unfollow at any time, with real-time updates.
+
+- Notifications:
+  - **Event-Driven**: Triggered by user actions (likes, comments, follows, event participation) to keep users informed.
+  - **Notification Types**: Flexible notification_type field allows new notification types to be added easily.
+  - **User-Centric**: Notifications are linked to users, ensuring personalized updates.
+
+- Events:
+  - **User-Generated**: Users create events for social gatherings, online meetups, etc.
+  - **RSVP & Status**: Tracks participation with statuses like "interested" or "attending" via the Attending model.
+  - **Notifications**: Event updates trigger notifications to participants and hosts.
+  - **Timestamps**: Events have start and end times to track scheduling.
+
+- Interactions
+  - **Likes, Comments & Attendings**: Users interact with posts and events through likes, comments, and attending statuses.
+  - **Nested Comments**: Supports threaded comments for deeper discussions.
+  - **Dynamic Updates**: Interactions update in real-time, with notifications for new likes, comments, followers or event RSVP's.
+
+<br>
+
+### **Entity Relationships Overview:**
+- **One-to-One:** Each user profile is uniquely tied to a Django User model instance.
+- **One-to-Many:** 
+  - Users can create multiple posts, comments, likes, or events.
+  - Posts can have multiple comments and likes.
+- **Many-to-Many:**
+  - Follower relationships enable users to connect with each other.
+  - Event attendance is facilitated through intermediary models.
+
+<br>  
+
+<u>Comprehnsive Relationship Table</u>
+
+| Primary Model |  Related Model | Relationship Type | Description |
+|---------|---------|----------|------------------|
+| User | Profile | One-to-One | Each user has one profile. |
+| User | Post | One-to-Many | One user can create multiple posts. |
+| User | Event | One-to-Many | One user can create multiple events. |
+| User | Comment | One-to-Many | One user can create multiple comments. |
+| User | Like | One-to-Many | One user can like many posts. |
+| User | Attendings | One-to-Many | One user can attend multiple Events. |
+| User | Follower | Many-to-Many | Users can follow each other. |
+| Post | Like | One-to-Many | A post can have many likes. |
+| Post | Comment | One-to-Many | A post can have many comments. |
+| Event | Attendings | Many-to-Many | Events can have multiple participants. |
+| Notification | User | Many-to-One | Many Notifications belong to one users |
+| Notification | Post | Many-to-One | Many Notifications belong can be associated with one post |
+| Notification | Events | Many-to-One | Many Notifications belong can be associated with one event |
+
+<br>
+
+## Security
+Security is essential for protecting user data and platform integrity.
+
+- **Data Encryption**: Sensitive data, including passwords and personal information, is encrypted to prevent unauthorized access.
+- **CSRF Tokens**: Each form submission includes a CSRF token to guard against cross-site request forgery attacks.
+- **Authentication**: User authentication is managed by Django AllAuth, ensuring secure user registration and login.
+- **API Security**: The API is protected with token-based authentication, limiting actions like creating posts or updating profiles to authenticated users. Superuser permissions are required for admin actions.
+
+This ensures a secure experience for all users on the platform.
+
+
+# Features
+.
+.
+,
 
 
 
