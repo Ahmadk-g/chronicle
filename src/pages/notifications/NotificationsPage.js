@@ -5,6 +5,8 @@ import Notification from "./Notification";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 import PopularProfiles from "../profiles/PopularProfiles";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function NotificationsPage() {
   const [notifications, setNotifications] = useState({ results: [] });
@@ -16,7 +18,7 @@ function NotificationsPage() {
         const { data } = await axiosReq.get("/notifications/");
         setNotifications(data);
 
-        // Mark notifications as read (Send PATCH request to update all notifications)
+        // Mark notifications as read
         await axiosReq.patch("/notifications/mark-all-as-read/");
 
         setHasLoaded(true);
@@ -39,17 +41,21 @@ function NotificationsPage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <div className="text-center mb-3" >
-          <h2>
-            Notifications
-          </h2>
+          <h2 className="text-muted">Notifications</h2>
         </div>
         <Container className={appStyles.Content} style={{maxWidth: "720px"}}>
           {hasLoaded ? (
             <>
               {notifications.results.length ? (
-                notifications.results.map((notification) => (
-                  <Notification key={notification.id} {...notification} setNotifications={setNotifications} />
-                ))
+                <InfiniteScroll
+                  children={notifications.results.map((notification) => (
+                    <Notification key={notification.id} {...notification} setNotifications={setNotifications} />
+                  ))}
+                  dataLength={notifications.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!notifications.next && notifications.results.length < 30}
+                  next={() => fetchMoreData(notifications, setNotifications)}
+                />
               ) : (
                 <p>No notifications found.</p>
               )}
