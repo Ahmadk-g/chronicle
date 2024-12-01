@@ -17,6 +17,7 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function EventsPage({ message, filter = "" }) {
   const [events, setEvents] = useState({ results: [] });
@@ -24,6 +25,10 @@ function EventsPage({ message, filter = "" }) {
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState("");
+
+  useRedirect(
+    pathname === "/myevents" ? "loggedOut" : null
+  );
 
   useEffect(() => {
     const fetchEvents = async () => {

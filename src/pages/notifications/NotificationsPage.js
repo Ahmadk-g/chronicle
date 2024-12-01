@@ -7,8 +7,11 @@ import appStyles from "../../App.module.css";
 import PopularProfiles from "../profiles/PopularProfiles";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import { useRedirect } from "../../hooks/useRedirect";
+
 
 function NotificationsPage() {
+  useRedirect("loggedOut");
   const [notifications, setNotifications] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
 

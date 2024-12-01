@@ -114,7 +114,7 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own post!</Tooltip>}
             >
-              <i className="far fa-heart" />
+              <i className={`far fa-heart ${styles.Disabled}`}/>
             </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>
@@ -129,7 +129,7 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
             >
-              <i className="far fa-heart" />
+              <i className={`far fa-heart ${styles.Disabled}`} />
             </OverlayTrigger>
           )}
           {likes_count}
@@ -142,7 +142,7 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>Log in to comment on posts!</Tooltip>}
             >
-              <i className="far fa-comments" />
+              <i className={`far fa-comments ${styles.Disabled}`} />
             </OverlayTrigger>
           )}
           {comments_count}

@@ -17,6 +17,11 @@ h5 {
   color: #ff76f4;
 }
 
+.Disabled:hover {
+  color: #cfced3;;
+  cursor:default;
+}
+
 .Heart:hover {
   /* color: #2142b2; */
   color: #ff76f4;

@@ -17,6 +17,7 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -25,12 +26,29 @@ function PostsPage({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
-  //   // Determine the heading based on pathname or filter
-  // const getPageHeading = () => {
-  //   if (pathname === "/feed") return "Your Feed";
-  //   if (pathname === "/liked") return "Posts You Liked";
-  //   return "Posts"; // Default heading
-  // };
+  // Determine the heading based on pathname or filter
+  const getPageHeading = () => {
+    if (pathname === "/feed") {
+      return (
+        <div className="text-center mb-3" >
+          <h2 className="text-muted">Your Feed</h2>
+        </div>
+      );
+    }
+    if (pathname === "/liked") {
+      return (
+        <div className="text-center mb-3" >
+            <h2 className="text-muted">Posts You've Liked</h2>
+        </div>
+      );
+    }
+    return null; // Default heading
+  };
+
+  // Use useRedirect conditionally
+  useRedirect(
+    pathname === "/feed" || pathname === "/liked" ? "loggedOut" : null
+  );
 
 
   useEffect(() => {
@@ -57,9 +75,7 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        {/* <div className="text-center mb-3" >
-          <h2>{getPageHeading()}</h2>
-        </div> */}
+        {getPageHeading()}
         <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
