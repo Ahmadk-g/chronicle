@@ -65,6 +65,16 @@ function App() {
                   />
                 )} 
               />
+              <Route
+                exact
+                path="/myevents"
+                render={() => (
+                  <EventsPage
+                    message="No events found. You did not mark any events."
+                    filter={`attendings__owner__profile=${profile_id}&ordering=-attendings__created_at&`}
+                  />
+                )}
+              />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />

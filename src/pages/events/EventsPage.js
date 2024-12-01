@@ -18,7 +18,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 
-function EventsPage({ message }) {
+function EventsPage({ message, filter = "" }) {
   const [events, setEvents] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -28,7 +28,8 @@ function EventsPage({ message }) {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data } = await axiosReq.get(`/events/?search=${query}`);
+        const { data } = await axiosReq.get(`/events/?${filter}search=${query}`);
+
         setEvents(data);
         setHasLoaded(true);
       } catch (err) {
@@ -44,15 +45,17 @@ function EventsPage({ message }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [query, pathname]);
+  }, [filter, query, pathname]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <div className="text-center mb-3" >
-          <h2>
-            Events
-          </h2>
+        {pathname === "/myevents" ? (
+            <h3 className="text-muted">Events You've Marked</h3>
+          ) : (
+            <h2 className="text-muted">Events</h2>
+          )}
         </div>
         <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
