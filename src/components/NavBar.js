@@ -72,14 +72,19 @@ const NavBar = () => {
         >
           <i className="far fa-plus-square"></i> 
         </Dropdown.Toggle>
+
         <Dropdown.Menu>
           <Dropdown.Item
+            className={styles.DropdownItem}
+            activeClassName={styles.DropdownItemActive}
             as={NavLink}
             to="/posts/create"
-            >
+          >
             Add Post
           </Dropdown.Item>
-          <Dropdown.Item 
+          <Dropdown.Item
+            className={`${styles.DropdownItem}`}
+            activeClassName={styles.DropdownItemActive}
             as={NavLink}
             to="/events/create"
           >
@@ -87,52 +92,12 @@ const NavBar = () => {
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-
-      {/* <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/posts/create"
-      >
-        <i className="far fa-plus-square"></i>Add post
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/events/create"
-      >
-        <i className="far fa-plus-square"></i>Add Event
-    </NavLink> */}
   </>
   );
 
 
   const loggedInIcons = (
     <>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/feed"
-      >
-        <OverlayTrigger
-          placement="bottom"
-          overlay={<Tooltip>Feed</Tooltip>}
-        >
-          <i className="fas fa-stream"></i>
-        </OverlayTrigger>
-        
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/liked"
-      >
-        <OverlayTrigger
-          placement="bottom"
-          overlay={<Tooltip>Liked Posts</Tooltip>}
-        >
-           <i className="fas fa-heart"></i>
-        </OverlayTrigger>
-      </NavLink>
       <NavLink
         className={`${styles.NavLink} ${unreadNotifications > 0 ? styles.HasUnread : ""}`}
         activeClassName={styles.Active}
@@ -149,26 +114,66 @@ const NavBar = () => {
             <span className={styles.NotificationCount}>{unreadNotifications}</span>
           )}
         </div>
+        <span className={`${styles.NavBarText} d-inline d-md-none`}>Notifications</span>
       </NavLink>
-      {/* <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <i className="fas fa-sign-out-alt"></i>Sign out
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        to={`/profiles/${currentUser?.profile_id}`}
-      >
-        <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
-      </NavLink> */}
+
       {/* Dropdown for Avatar */}
       <Dropdown>
         <Dropdown.Toggle as="div" id="dropdown-avatar" className={styles.AvatarToggle}>
-          <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
+          <Avatar
+            src={currentUser?.profile_image}
+            text={currentUser?.username}
+            height={40}
+          />
         </Dropdown.Toggle>
+
         <Dropdown.Menu>
-          <Dropdown.Item as={NavLink} to={`/profiles/${currentUser?.profile_id}`}>
-            Profile
+          <Dropdown.Item 
+            className={styles.NavLink}
+            as={NavLink}
+            to={`/profiles/${currentUser?.profile_id}`}
+            activeClassName={styles.Active}
+          >
+            <i className="fas fa-user-circle"></i>
+            <span className={`${styles.NavBarText} d-inline`}> My Profile</span>
           </Dropdown.Item>
-          <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
+
+          <Dropdown.Item
+            className={styles.NavLink}
+            as={NavLink}
+            activeClassName={styles.Active}
+            to="/feed"
+          >
+            <i className="fas fa-stream"></i>
+            <span className={`${styles.NavBarText} d-inline`}>My Feed</span>
+          </Dropdown.Item>
+          <Dropdown.Item
+            className={styles.NavLink}
+            as={NavLink}
+            activeClassName={styles.Active}
+            to="/liked"
+          >
+            <i className="fas fa-heart"></i>
+            <span className={`${styles.NavBarText} d-inline`}>My Likes</span>
+          </Dropdown.Item>
+          <Dropdown.Item
+            className={styles.NavLink}
+            as={NavLink}
+            activeClassName={styles.Active}
+            to="/myevents"
+          >
+            <i className="fas fa-calendar"></i>
+            <span className={`${styles.NavBarText} d-inline`}>My Events</span>
+          </Dropdown.Item>
+
+          <Dropdown.Item
+            className={styles.NavLink}
+            onClick={handleSignOut}
+            activeClassName={styles.Active}
+          >
+            <i className="fas fa-sign-out-alt"></i>
+            <span className={`${styles.NavBarText} d-inline`}>Sign out</span>
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </>
@@ -200,49 +205,53 @@ const NavBar = () => {
       expand="md"
       fixed="top"
     >
-      <NavLink to="/">
-        <Navbar.Brand>
-          <img src={logo} alt="logo" height="45" />
-        </Navbar.Brand>
-      </NavLink>
-      {currentUser && addPostIcon}
-      <Navbar.Toggle
-        ref={ref}
-        onClick={() => setExpanded(!expanded)}
-        aria-controls="basic-navbar-nav"
-      />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto text-left">
-          <NavLink
-            exact
-            className={styles.NavLink}
-            activeClassName={styles.Active}
-            to="/events"
-          >
-            <OverlayTrigger
-              placement="bottom"
-              overlay={<Tooltip>Events</Tooltip>}
+      <Container>
+        <NavLink to="/">
+          <Navbar.Brand>
+            <img src={logo} alt="logo" height="45" />
+          </Navbar.Brand>
+        </NavLink>
+        {currentUser && addPostIcon}
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto text-left">
+            <NavLink
+              exact
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/events"
             >
-              <i class="fa-solid fa-calendar"></i>
-            </OverlayTrigger>
-          </NavLink>
-          <NavLink
-            exact
-            className={styles.NavLink}
-            activeClassName={styles.Active}
-            to="/"
-          >
-            <OverlayTrigger
-              placement="bottom"
-              overlay={<Tooltip>Home</Tooltip>}
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip>Events</Tooltip>}
+              >
+                <i class="fa-solid fa-calendar"></i>
+              </OverlayTrigger>
+              <span className={`${styles.NavBarText} d-inline d-md-none`}>Events</span>
+            </NavLink>
+            <NavLink
+              exact
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/"
             >
-              <i className="fas fa-home"></i>
-            </OverlayTrigger>
-            
-          </NavLink>
-        </Nav>
-        {currentUser ? loggedInIcons : loggedOutIcons}
-      </Navbar.Collapse>
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip>Home</Tooltip>}
+              >
+                <i className="fas fa-home"></i>
+              </OverlayTrigger>
+              <span className={`${styles.NavBarText} d-inline d-md-none`}>Home</span>
+            </NavLink>
+            {currentUser ? loggedInIcons : loggedOutIcons}
+          </Nav>
+          
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 };

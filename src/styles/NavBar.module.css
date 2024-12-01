@@ -9,11 +9,26 @@
 
 .NavLink {
   padding: 5px;
+  margin-right: 5px;
 }
 
 .Active i {
   color: #802ac7;
 }
+
+.DropdownItem:hover {
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  color: #ffffff;
+  background-color:  rgba(255, 118, 244, 0.6) !important;
+}
+
+.DropdownItemActive{
+  background-color:  rgba(128, 42, 199, 0.6) !important;
+  color: white !important;
+}
+
+
 
 .custom-toggle::after {
   display: none !important;
@@ -51,23 +66,32 @@
 }
 
 
+.NavBarText {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
 
 .BellContainer {
   position: relative;
   display: inline-block;  /* Ensures the bell icon and count are inline */
 }
 
-.HasUnread {
-  color: red;
-}
-
 .NotificationCount {
   position: absolute;
   top: -5px;
   right: -5px;
-  /* background-color: red; */
-  color: blue;
+  background-color: red;
+  color: white;
   border-radius: 50%;
-  padding: 3px 7px;
+  padding: 2px 6px;
   font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 18px;
+  min-height: 18px;
+  line-height: 1;
+  z-index: 1;
 }

@@ -6,6 +6,10 @@ const useClickOutsideToggle = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
+        // Prevent collapsing if the click is on the toggle itself
+        if (event.target.closest('.dropdown-toggle')) {
+          return;
+        }
         setExpanded(false);
       }
     };
