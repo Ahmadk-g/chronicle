@@ -3,7 +3,6 @@
   border: 1px solid #dadadf;
   border-radius: 2px;
   margin-bottom: 16px;
-  /* max-width: 600px; */
   text-align: center;
 }
 
@@ -13,18 +12,16 @@ h5 {
 }
 
 .Heart {
-  /* color: #f85032; */
   color: #ff76f4;
 }
 
 .Disabled:hover {
-  color: #cfced3;;
+  color: #cfced3;
   cursor:default;
 }
 
 .Heart:hover {
-  /* color: #2142b2; */
-  color: #ff76f4;
+  Color: #cfced3;
 }
 
 .HeartOutline:hover {

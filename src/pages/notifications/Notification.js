@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
-import style from "../../styles/Notification.module.css"
+import styles from "../../styles/Notification.module.css"
 
 const Notification = (props) => {
   const {
@@ -53,14 +53,14 @@ return (
             {post && (
               <div>
                 <Link to={`/posts/${post}`} className="align-self-center mx-1">
-                  <img className={`${style.Notify_Image}`} src={post_image} alt="Post content" height={35} />
+                  <img className={`${styles.Notify_Image}`} src={post_image} alt="Post content" height={35} />
                 </Link>
               </div>
             )}
             {event && (
               <div>
                 <Link to={`/events/${event}`} className="align-self-center mx-1">
-                  <img className={`${style.Notify_Image}`} src={event_image} alt="Event content" height={35} />
+                  <img className={`${styles.Notify_Image}`} src={event_image} alt="Event content" height={35} />
                 </Link>
               </div>
             )}

@@ -28,8 +28,6 @@
   color: white !important;
 }
 
-
-
 .custom-toggle::after {
   display: none !important;
 }
@@ -39,11 +37,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem; /* Adjust as needed */
+  font-size: 1.5rem;
 }
+
 .PlusToggle:hover {
   color: '#ff76f4';
 }
+
 .AvatarToggle {
   border: none;
   background: none;
@@ -57,24 +57,14 @@
   align-items: flex-start;
 }
 
-.Hide {
-  display: none;
-}
-
-.Show {
-  display: flex;
-}
-
-
 .NavBarText {
   margin-left: 5px;
   font-size: 14px;
 }
 
-
 .BellContainer {
   position: relative;
-  display: inline-block;  /* Ensures the bell icon and count are inline */
+  display: inline-block;
 }
 
 .NotificationCount {

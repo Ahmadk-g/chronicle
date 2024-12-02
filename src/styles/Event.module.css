@@ -1,81 +1,75 @@
 .Post {
-    background-color: #ffffff;
-    border: 1px solid #dadadf;
-    border-radius: 2px;
-    margin-bottom: 16px;
-    /* max-width: 600px; */
-    text-align: center;
-  }
+  background-color: #ffffff;
+  border: 1px solid #dadadf;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  text-align: center;
+}
 
-  .PostCardHeader {
-    padding: 0.25rem 1rem
-  }
-  
-  .Post figure,
-  h5 {
-    margin: 0 0;
-  }
+.PostCardHeader {
+  padding: 0.25rem 1rem
+}
 
-  .ButtonDisabled {
-    border-radius: 4rem;
-    margin-right: 5px;
-  }
+.ButtonDisabled {
+  border-radius: 4rem;
+  margin-right: 5px;
+}
 
-  .ButtonActive {
-    background-color: #a02ac7;
-    border-color: #a02ac7;
-    border-radius: 4rem;
-    margin-right: 5px;
-  }
-  
-  .ButtonActive:hover {
-    background-color: #ff76f4;
-    border-color: #ff76f4;
-  }
+.ButtonActive {
+  background-color: #a02ac7;
+  border-color: #a02ac7;
+  border-radius: 4rem;
+  margin-right: 5px;
+}
 
-  .ButtonActive:active {
-    background-color: #ff76f4 !important;
-    border-color: #ff76f4 !important;
-  }
+.ButtonActive:hover {
+  background-color: #ff76f4;
+  border-color: #ff76f4;
+}
 
-  .ButtonActive:focus {
-    background-color: #a02ac7;
-    border-color: #a02ac7;
-  }
+.ButtonActive:active {
+  background-color: #ff76f4 !important;
+  border-color: #ff76f4 !important;
+}
 
-  .ButtonOutline {
-    background-color: #000;
-    border-color: #000;
-    border-radius: 4rem;
-    margin-right: 5px;
-  }
-  
-  .ButtonOutline:hover {
-    background-color: #ff76f4;
-    border-color: #ff76f4;
-  }
+.ButtonActive:focus {
+  background-color: #a02ac7;
+  border-color: #a02ac7;
+}
 
-  .ButtonOutline:active {
-    background-color: #ff76f4 !important;
-    border-color: #ff76f4 !important;
-  }
+.ButtonOutline {
+  background-color: #000;
+  border-color: #000;
+  border-radius: 4rem;
+  margin-right: 5px;
+}
 
-  .ButtonOutline:focus {
-    background-color: #a02ac7;
-    border-color: #a02ac7;
-  }
+.ButtonOutline:hover {
+  background-color: #ff76f4;
+  border-color: #ff76f4;
+}
+
+.ButtonOutline:active {
+  background-color: #ff76f4 !important;
+  border-color: #ff76f4 !important;
+}
+
+.ButtonOutline:focus {
+  background-color: #a02ac7;
+  border-color: #a02ac7;
+}
 
 
-  .TimeContainer {
-    align-items: flex-start !important;
-  }
+.TimeContainer {
+  align-items: flex-start !important;
+}
 
-  .EventImage {
-    max-height: 600px;
-    object-fit: cover;
-  }
+.EventImage {
+  max-height: 600px;
+  object-fit: cover;
+}
 
-  .BadgeEventCard {
-    background-color: #717d6c;
-    color: #fff;
-  }
+.BadgeEventCard {
+  background-color: #717d6c;
+  color: #fff;
+}
