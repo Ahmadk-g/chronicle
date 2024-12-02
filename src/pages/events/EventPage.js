@@ -24,9 +24,8 @@ function EventPage() {
         ]);
         setEvent({ results: [event] });
         setHasLoaded(true);
-        console.log(event);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 

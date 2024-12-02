@@ -31,8 +31,6 @@ const Notification = (props) => {
     message = ` followed you`;
   }
 
-  console.log(is_read)
-
 return (
     <Card className={"mb-2"}>
         <Card.Body style={{padding: '0.25rem'}}>

@@ -46,7 +46,7 @@ const Comment = (props) => {
       }));
       setShowDeleteModal(false);
     } catch (err) {
-      console.log(err)
+      // console.log(err)
       setShowDeleteModal(false);
     }
   };

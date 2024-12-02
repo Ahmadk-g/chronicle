@@ -38,7 +38,7 @@ const NavBar = () => {
         setUnreadNotifications(unreadCount);  // Update the unread notification count
 
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -87,7 +87,7 @@ const NavBar = () => {
       setCurrentUser(null);
       removeTokenTimestamp();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }, [setCurrentUser]);
 

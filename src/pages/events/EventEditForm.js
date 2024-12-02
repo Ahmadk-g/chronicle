@@ -51,7 +51,7 @@ function EventEditForm() {
         is_owner ? setEventData({ title, description, image, category, event_date: formattedEventDate, start_time, end_time, location, ticket_price: formattedTicketPrice }) : history.push("/");
         
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -65,7 +65,7 @@ function EventEditForm() {
         const response = await axiosReq.get("/category_choices/");
         setCategories(response.data);
       } catch (err) {
-        console.log("Error fetching categories:", err);
+        // console.log("Error fetching categories:", err);
       }
     };
 
@@ -103,18 +103,6 @@ function EventEditForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    console.log("Form Data:", {
-        title,
-        description,
-        category,
-        event_date,
-        start_time,
-        end_time,
-        location,
-        ticket_price,
-        image: imageInput.current.files[0]
-      });
-
     formData.append("title", title);
     formData.append("description", description);
     formData.append("category", category);
@@ -134,7 +122,6 @@ function EventEditForm() {
       history.push(`/events/${id}`, { from: history.location.pathname });
     } catch (err) {
     //   console.log(err);
-      console.log("Error submitting form:", err); // Log the error response
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
