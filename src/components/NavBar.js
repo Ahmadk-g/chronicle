@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -21,6 +21,8 @@ const NavBar = () => {
 
   const [notifications, setNotifications] = useState([]);
   const [unreadNotifications, setUnreadNotifications] = useState(0);  // State to store unread notification count
+  const [notificationsPageLoaded, setNotificationsPageLoaded] = useState(false);  // Track if notifications page is loaded
+
 
   const { pathname } = useLocation();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
@@ -31,35 +33,62 @@ const NavBar = () => {
       try {
         const { data } = await axios.get(`/notifications/`);  // Fetch unread notifications
         setNotifications(data.results);
-        console.log("Fetched Notifications:", data.results);
 
         const unreadCount = data.results.filter(notifications => !notifications.is_read).length;
-        console.log(unreadCount)
         setUnreadNotifications(unreadCount);  // Update the unread notification count
+
       } catch (err) {
         console.log(err);
       }
     };
 
-    fetchNotifications();
+    // Reset the unread notifications count when the user navigates to the notifications page
+    if (pathname === '/notifications') {
+      setUnreadNotifications(0);  // Reset unread notifications to 0 immediately when on notifications page
+    } else {
+      // If not on the notifications page, just fetch notifications regularly
+      fetchNotifications();
+    }
+
     const timer = setTimeout(() => {
       fetchNotifications();
-    }, 3000);
+    }, 60000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [currentUser, pathname]);
+  }, [currentUser, pathname, notificationsPageLoaded]);
   
 
-  const handleSignOut = async () => {
+  const NotificationBell = ({ unreadCount }) => (
+    <NavLink
+      className={`${styles.NavLink} ${unreadCount > 0 ? styles.HasUnread : ""}`}
+      activeClassName={styles.Active}
+      to="/notifications"
+    >
+      <div className={styles.BellContainer}>
+        <OverlayTrigger
+          placement="bottom"
+          overlay={<Tooltip>Notifications</Tooltip>}
+        >
+          <i className={`fas fa-bell ${unreadCount > 0 ? styles.HasUnread : ""}`} />
+        </OverlayTrigger>
+        {unreadCount > 0 && (
+          <span className={styles.NotificationCount}>{unreadCount}</span>
+        )}
+      </div>
+      <span className={`${styles.NavBarText} d-inline d-md-none`}>Notifications</span>
+    </NavLink>
+  );
+
+  const handleSignOut = useCallback(async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [setCurrentUser]);
 
   const addPostIcon = (
     <>
@@ -96,9 +125,9 @@ const NavBar = () => {
   );
 
 
-  const loggedInIcons = (
+  const loggedInIcons = useMemo(() => (
     <>
-      <NavLink
+      {/* <NavLink
         className={`${styles.NavLink} ${unreadNotifications > 0 ? styles.HasUnread : ""}`}
         activeClassName={styles.Active}
         to="/notifications"
@@ -115,11 +144,17 @@ const NavBar = () => {
           )}
         </div>
         <span className={`${styles.NavBarText} d-inline d-md-none`}>Notifications</span>
-      </NavLink>
+      </NavLink> */}
+      <NotificationBell unreadCount={unreadNotifications} />
 
       {/* Dropdown for Avatar */}
       <Dropdown>
-        <Dropdown.Toggle as="div" id="dropdown-avatar" className={styles.AvatarToggle}>
+        <Dropdown.Toggle
+          as="div"
+          id="dropdown-avatar"
+          className={styles.AvatarToggle}
+          data-testid="avatar-toggle"  // for testing
+        >
           <Avatar
             src={currentUser?.profile_image}
             text={currentUser?.username}
@@ -135,7 +170,7 @@ const NavBar = () => {
             activeClassName={styles.Active}
           >
             <i className="fas fa-user-circle"></i>
-            <span className={`${styles.NavBarText} d-inline`}> My Profile</span>
+            <span className={`${styles.NavBarText} d-inline`}>My Profile</span>
           </Dropdown.Item>
 
           <Dropdown.Item
@@ -177,7 +212,7 @@ const NavBar = () => {
         </Dropdown.Menu>
       </Dropdown>
     </>
-  );
+  ), [currentUser, unreadNotifications]);
 
   const loggedOutIcons = (
     <>
@@ -229,7 +264,7 @@ const NavBar = () => {
                 placement="bottom"
                 overlay={<Tooltip>Events</Tooltip>}
               >
-                <i class="fa-solid fa-calendar"></i>
+                <i className="fa-solid fa-calendar"></i>
               </OverlayTrigger>
               <span className={`${styles.NavBarText} d-inline d-md-none`}>Events</span>
             </NavLink>
