@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
 import { axiosReq } from "../../api/AxiosDefaults";
 import Notification from "./Notification";
 import Asset from "../../components/Asset";

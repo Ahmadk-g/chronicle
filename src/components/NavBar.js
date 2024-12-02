@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Dropdown from "react-bootstrap/Dropdown";
 import logo from '../assets/logo.png';
-import { OverlayTrigger, Tooltip, Dropdown } from "react-bootstrap";
 
 import styles from '../styles/NavBar.module.css'
 import { useLocation } from "react-router";

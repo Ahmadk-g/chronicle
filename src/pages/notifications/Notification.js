@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Notification.module.css"
