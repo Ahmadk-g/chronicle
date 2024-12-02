@@ -6,9 +6,6 @@ import styles from "../../styles/Notification.module.css"
 
 const Notification = (props) => {
   const {
-    id,
-    owner,
-    notifier,
     notifier_name,
     notifier_id,
     notifier_image,

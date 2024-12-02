@@ -12,6 +12,7 @@ import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContex
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import { removeTokenTimestamp } from "../utils/utils";
 
 
 
@@ -19,10 +20,7 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  const [notifications, setNotifications] = useState([]);
   const [unreadNotifications, setUnreadNotifications] = useState(0);  // State to store unread notification count
-  const [notificationsPageLoaded, setNotificationsPageLoaded] = useState(false);  // Track if notifications page is loaded
-
 
   const { pathname } = useLocation();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
@@ -32,7 +30,6 @@ const NavBar = () => {
       if (!currentUser) return; 
       try {
         const { data } = await axios.get(`/notifications/`);  // Fetch unread notifications
-        setNotifications(data.results);
 
         const unreadCount = data.results.filter(notifications => !notifications.is_read).length;
         setUnreadNotifications(unreadCount);  // Update the unread notification count
@@ -57,7 +54,7 @@ const NavBar = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [currentUser, pathname, notificationsPageLoaded]);
+  }, [currentUser, pathname]);
   
 
   const NotificationBell = ({ unreadCount }) => (
@@ -85,6 +82,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err);
     }
@@ -127,24 +125,6 @@ const NavBar = () => {
 
   const loggedInIcons = useMemo(() => (
     <>
-      {/* <NavLink
-        className={`${styles.NavLink} ${unreadNotifications > 0 ? styles.HasUnread : ""}`}
-        activeClassName={styles.Active}
-        to="/notifications"
-      >
-        <div className={styles.BellContainer}>
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip>Notifications</Tooltip>}
-          >
-            <i className={`fas fa-bell ${unreadNotifications > 0 ? styles.HasUnread : ""}`} />
-          </OverlayTrigger>
-          {unreadNotifications > 0 && (
-            <span className={styles.NotificationCount}>{unreadNotifications}</span>
-          )}
-        </div>
-        <span className={`${styles.NavBarText} d-inline d-md-none`}>Notifications</span>
-      </NavLink> */}
       <NotificationBell unreadCount={unreadNotifications} />
 
       {/* Dropdown for Avatar */}
@@ -212,7 +192,7 @@ const NavBar = () => {
         </Dropdown.Menu>
       </Dropdown>
     </>
-  ), [currentUser, unreadNotifications]);
+  ), [currentUser, unreadNotifications, handleSignOut]);
 
   const loggedOutIcons = (
     <>

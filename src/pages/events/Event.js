@@ -195,7 +195,7 @@ const Event = (props) => {
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {location && <Card.Text><i class="fa-solid fa-location-dot"></i>{location}</Card.Text>}
+        {location && <Card.Text><i className="fa-solid fa-location-dot"></i>{location}</Card.Text>}
         {description && <Card.Text>{description}</Card.Text>}
         <div className="d-flex justify-content-around">
           <div className={styles.TimeContainer}>
