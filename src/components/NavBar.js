@@ -16,12 +16,14 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const history = useHistory();
 
   const [unreadNotifications, setUnreadNotifications] = useState(0);  // State to store unread notification count
 
@@ -32,7 +34,7 @@ const NavBar = () => {
     const fetchNotifications = async () => {
       if (!currentUser) return; 
       try {
-        const { data } = await axios.get(`/notifications/`);  // Fetch unread notifications
+        const { data } = await axios.get(`/notifications/`);
 
         const unreadCount = data.results.filter(notifications => !notifications.is_read).length;
         setUnreadNotifications(unreadCount);  // Update the unread notification count
@@ -86,10 +88,11 @@ const NavBar = () => {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
+      history.push("/");
     } catch (err) {
       // console.log(err);
     }
-  }, [setCurrentUser]);
+  }, [setCurrentUser, history]);
 
   const addPostIcon = (
     <>
@@ -137,6 +140,7 @@ const NavBar = () => {
           id="dropdown-avatar"
           className={styles.AvatarToggle}
           data-testid="avatar-toggle"  // for testing
+          aria-label="Toggle avatar menu"
         >
           <Avatar
             src={currentUser?.profile_image}
