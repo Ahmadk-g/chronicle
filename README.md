@@ -448,15 +448,281 @@ This ensures a secure experience for all users on the platform.
 
 
 # Features
-.
-.
-,
+
+### Logo
+
+The logo is not just a visual element but also a functional feature. Clicking on it will always bring you back to the homepage, providing an easy way to navigate to the starting point of the site.
+
+<details>
+<summary><strong>Click to View Logo</strong></summary>
 
 
+<img src="documentation/logo.png" alt="Chronicle Logo" style="width: 250px; height: auto;">
+
+</details>
 
 
+### Responsice Navigation Bar
+
+The Chronicle Navbar is designed to provide seamless navigation throughout the platform. It features intuitive icons for core functionalities, with descriptive labels appearing on hover for clarity. For actions like "Sign In" and "Sign Up," visible text is displayed alongside the icons to prioritize accessibility for new users.
+
+The navbar dynamically adapts based on user authentication status.
+- For unauthenticated users, options like "Sign In" and "Sign Up" are prominently displayed. 
+- Once signed in, the navbar updates to include personalized elements like access to "My Feed" "My likes," and user-specific features, ensuring an efficient and tailored experience.
+
+<details>
+<summary><strong>Click to View NavBar</strong></summary>
+
+#### Before user login
+<!-- ![Features](documentation/features/navbar/guestnavbar.png) -->
+<img src="documentation/features/navbar/guestnavbar.png" alt="Features" style="width: 800px; height: auto;">
 
 
+#### After user login
+<!-- ![Features](documentation/features/navbar/navbar.png) -->
+<img src="documentation/features/navbar/navbar.png" alt="Features" style="width: 800px; height: auto;">
 
 
+#### Add content dropdown
+<!-- ![Features](documentation/features/navbar/addmenu.png) -->
+<img src="documentation/features/navbar/addmenu.png" alt="Features" style="width: 250px; height: auto;">
 
+
+#### User-specific Side dropdown
+<!-- ![Features](documentation/features/navbar/user-sidenav.png) -->
+<img src="documentation/features/navbar/user-sidenav.png" alt="Features" style="width: 250px; height: auto;">
+
+
+<br>
+
+On smaller screens, the navbar compresses inro a dropdown for easier navigation
+
+#### Compressed NavBar
+<!-- ![Features](documentation/features/navbar/compressednav.png) -->
+<img src="documentation/features/navbar/compressednav.png" alt="Features" style="width: 250px; height: auto;">
+
+
+#### Hamburger Menu
+<!-- ![Features](documentation/features/navbar/burgermenu.png) -->
+<img src="documentation/features/navbar/burgermenu.png" alt="Features" style="width: 250px; height: auto;">
+
+
+#### Hamburger Menu with user-specific links
+<!-- ![Features](documentation/features/navbar/burgermenu-user.png) -->
+<img src="documentation/features/navbar/burgermenu-user.png" alt="Features" style="width: 250px; height: auto;">
+
+
+</details>
+
+
+### Home Page
+
+The Home Page, serving as the welcome page for the site, displays a list of posts, popular profiles, and includes a search bar for filtering posts, offering users easy content discovery and engagement.
+
+<details>
+<summary><strong>Click to View Home Page</strong></summary>
+
+<!-- ![Features](documentation/features/homepage.png) -->
+<img src="documentation/features/homepage.png" alt="Features" style="width: 800px; height: auto;">
+
+</details>
+
+### Popular Profiles
+
+The Popular Profiles section showcases a dynamic list of the most followed users, rendered across nearly all pages. This section is dynamically updated based on user authentication, with a "Follow" button appearing next to profiles once a user is signed in, allowing them to follow or unfollow other profiles to enhance social interaction and content discovery.
+
+<details>
+<summary><strong>Click to View Popular Profiles</strong></summary>
+
+#### Unregistered
+<img src="documentation/features/popularprofiles/unregistered.png" alt="Features" style="width: 250px; height: auto;">
+
+
+#### Registered
+<img src="documentation/features/popularprofiles/registered.png" alt="Features" style="width: 250px; height: auto;">
+
+</details>
+
+### Search Bar
+
+The search bar, available on both the event and post list pages, allows users to filter content based on their query, providing a more streamlined and efficient way to find specific posts or events.
+
+<details>
+<summary><strong>Click to View Search Bar</strong></summary>
+
+<img src="documentation/features/searchbar.png" alt="Features" style="width: 400px; height: auto;">
+
+</details>
+
+
+### Events Page
+
+The Events Page serves a similar function to the home/post page but is focused on displaying upcoming events. It features a list of events, allowing users to view details and join or interact with them. Just like the home page, it includes a search bar for filtering events based on user input, making it easier to discover relevant activities.
+
+<details>
+<summary><strong>Click to View Events Page</strong></summary>
+
+<img src="documentation/features/eventspage.png" alt="Features" style="width: 800px; height: auto;">
+
+</details>
+
+### Events Detail Page
+
+The Event Detail page offers a comprehensive view of the event, with options for the owner to edit or delete the post through a dropdown menu.
+
+
+<details>
+<summary><strong>Click to View Event Detail Page</strong></summary>
+
+<img src="documentation/features/event-detail.png" alt="Features" style="width: 800px; height: auto;">
+
+</details>
+
+### Post Detail Page
+
+The Post Detail page offers a comprehensive view of the post, with options for the owner to edit or delete the post through a dropdown menu, and a comment section for user engagement.
+
+<details>
+<summary><strong>Click to View Pose Details Page</strong></summary>
+
+<img src="documentation/features/postdetail/postdetail.png" alt="Features" style="width: 800px; height: auto;">
+
+#### Comment section
+
+<img src="documentation/features/postdetail/comment.png" alt="Features" style="width: 400px; height: auto;">
+
+</details>
+
+## User Specific Features
+
+### My profile
+
+The My Profile page displays detailed information about the user, including their personal data and counts for created posts, created events, followers, and followings. It features interactive buttons for easily toggling between the user’s posts and events. 
+
+<details>
+<summary><strong>Click to View My Profile Page</strong></summary>
+
+<img src="documentation/features/myprofile/profilepage.png" alt="Features" style="width: 800px; height: auto;">
+
+No events message
+
+<img src="documentation/features/myprofile/noevents.png" alt="Features" style="width: 400px; height: auto;">
+
+
+Profile Info Dropdown 
+
+<img src="documentation/features/myprofile/dropdown.png" alt="Features" style="width: 400px; height: auto;">
+
+Profile Info Edit Page 
+
+<img src="documentation/features/myprofile/editinfo.png" alt="Features" style="width: 600px; height: auto;">
+
+
+</details>
+
+
+### My Feed & My Likes
+
+**My Feed** shows posts from users the user follows.
+
+**My Likes** shows posts likes by the user.
+
+<details>
+<summary><strong>Click to View User-specific Post Pages</strong></summary>
+<br>
+
+**My Feed**
+
+<img src="documentation/features/myfeed.png" alt="Features" style="width: 400px; height: auto;">
+
+**My Likes**
+
+<img src="documentation/features/mylikes.png" alt="Features" style="width: 400px; height: auto;">
+
+</details>
+
+### Notifications
+
+Displays activity notifications, such as likes, comments on your posts, attendance marks on your events, and new followers.
+Each notification links directly to the relevant user, post, or event for easy access and interaction.
+
+<details>
+<summary><strong>Click to View Notifications Page</strong></summary>
+
+<img src="documentation/features/notifications/notificationspage.png" alt="Features" style="width: 800px; height: auto;">
+
+#### Notifications (Navbar Alert)
+
+The navbar includes a notification alert that displays the count of new notifications.
+Once the Notifications page is opened, all notifications are marked as read, and the alert count disappears, ensuring a clean and updated user experience.
+
+<img src="documentation/features/notifications/alert.png" alt="Features" style="width: 400px; height: auto;">
+
+</details>
+
+## Add & Edit Content
+
+This feature includes forms for adding new posts and events. The edit form is identical to the add form, but prefilled with the existing model data, allowing users to modify content easily.
+
+<details>
+<summary><strong>Click to view Content Pages</strong></summary>
+
+<img src="documentation/features/contentpages/createpost.png" alt="Features" style="width: 500px; height: auto;">
+
+<img src="documentation/features/contentpages/editpost.png" alt="Features" style="width: 500px; height: auto;">
+
+<img src="documentation/features/contentpages/createevent.png" alt="Features" style="width: 500px; height: auto;">
+
+<img src="documentation/features/contentpages/editevent.png" alt="Features" style="width: 500px; height: auto;">
+
+</details>
+
+## Interactive Features
+
+The interactive features allow users to engage with content by liking and unliking posts, commenting (with options to edit or delete), marking event attendance as "Interested" or "Attending," and following or unfollowing other users, enhancing the overall user experience and social interaction on the platform.
+
+<details>
+<summary><strong>Click to View Interactive Features</strong></summary>
+
+### Post interactive buttons
+
+<img src="documentation/features/interactive/postbuttons.png" alt="Features" style="width: 250px; height: auto;">
+
+#### On hover:
+
+<img src="documentation/features/interactive/hovered.png" alt="Features" style="width: 250px; height: auto;">
+
+#### Liked:
+
+<img src="documentation/features/interactive/liked.png" alt="Features" style="width: 250px; height: auto;">
+
+
+#### Comment:
+
+<img src="documentation/features/interactive/comment.png" alt="Features" style="width: 250px; height: auto;">
+
+#### Comment Dropdown:
+
+<img src="documentation/features/interactive/edit-deletecomment.png" alt="Features" style="width: 250px; height: auto;">
+
+### Event interactive buttons
+
+The 'attending' button is active in this picture:
+
+<img src="documentation/features/interactive/attending.png" alt="Features" style="width: 250px; height: auto;">
+
+</details>
+
+## Trigger messages
+Trigger messages provide helpful prompts to guide user interactions. For example, when an unregistered user attempts to like a post, an overlay message appears on hover, notifying them that they need to sign in to perform this action.
+
+<details>
+<summary><strong>Click to View Trigger messages</strong></summary>
+
+<img src="documentation/features/interactive/trigger.png" alt="Features" style="width: 250px; height: auto;">
+
+<img src="documentation/features/interactive/triggerlike.png" alt="Features" style="width: 250px; height: auto;">
+
+<img src="documentation/features/interactive/triggermark.png" alt="Features" style="width: 250px; height: auto;">
+
+</details>
