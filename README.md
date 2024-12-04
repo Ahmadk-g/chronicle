@@ -64,15 +64,32 @@ Chronicle’s UX is crafted to empower users to connect, share, and explore in a
 
 ## Color Scheme
 
-.
-.
-.
+The color palette used across the site is inspired by the vibrant tones of our logo, creating a visually cohesive and engaging experience. To enhance usability and guide user interaction, different shades of these core colors are applied strategically throughout the app. From subtle background hues to dynamic hover effects, each color and shade is chosen to complement the design and improve user experience based on context and functionality. 
+
+![Palette](documentation/colorpalette.png)
+
+Below is a breakdown of the primary colors and their contextual usage:
+
+**Primary Colors**
+- **Main Background** `#f8f8f8`: Used as the primary background color across the app for a clean and neutral base.
+- **Content Background** `#ffffff`: Applied to cards, containers, and main content areas to maintain a bright and focused look.
+
+**Intercative Elements**
+- **Navbar Icons**: Default `#a5a4a7`, Hover `#ff76f4`, Active `#802ac7`
+- **Buttons**: 
+  - Primary: `#76bbfa`
+  - Following: `#9671ee`
+  - Comment Post: Default `#9671ee`, Hover `#cfced3`
+  - Event Attending: Default `#000`, Hover `#ff76f4`, Active `#a02ac7`
+
+Text colors are also dynamically adjusted to ensure strong contrast and optimal readability across various backgrounds. This thoughtful approach ensures a harmonious and accessible interface, while maintaining consistency with the brand's identity.
+
 
 ## Fonts
 
-.
-.
-.
+The primary font used throughout the site is **DM Sans**, which provides a clean and modern look, enhancing readability and aesthetics. 
+
+To ensure consistency, **sans-serif** is designated as a backup font, serving as a fallback in cases where the primary font fails to load correctly.
 
 <br>
 
@@ -110,9 +127,92 @@ Chronicle is a modern social media platform designed to bring communities closer
 
 ## Agile Methodologies
 
-.
-.
-.
+Chronicle was developed using Agile methodology, fostering iterative development and adaptability throughout the project. The use of GitHub Projects and Issues allowed for efficient task management via a Kanban-style board. This approach facilitated the organization of tasks into Epics, User Stories, and actionable Tasks, ensuring continuous progress tracking and a user-focused final product.
+
+
+### Epics and User Stories
+
+- **Epics**: Represent large features or overarching objectives, broken down into smaller, actionable components to enable a structured and manageable development process.
+
+- **User Stories**: Define specific functionalities or features from a user's perspective, with clear acceptance criteria to ensure completeness. Each user story often comprises several tasks that need to be completed to meet the user’s needs.
+
+You can explore the project's epics and user stories on the [GitHub Kanban Board](https://github.com/users/Ahmadk-g/projects/5).
+
+### MoSCoW Prioritization
+
+To manage priorities and allocate resources effectively, the MoSCoW method was used, categorizing tasks as follows:
+
+- **Must Have**: Essential features that are critical for the app’s core functionality.
+- **Should Have**: Important features that enhance user experience but are not immediately critical.
+- **Could Have**: Desirable features addressed only after "Must Have" and "Should Have" requirements are completed.
+- **Won’t Have**: Features not considered for the initial release but potentially included in future updates.
+
+### Kanban Board
+A Kanban board was utilized for visualizing the workflow, tracking the status of user stories, and ensuring efficient task management. The board highlights tasks in various stages: To Do, In Progress, and Completed, promoting transparency and streamlined development.
+
+You can view the project's Kanban board [here](https://github.com/users/Ahmadk-g/projects/5).
+
+Below is an outline of the Epics and their respective User Stories implemented in the project:
+
+#### Epic 1: Authentication and User management
+User account creation, login/logout processes, profile personalization, and secure token-based session management.
+
+**User Stories**
+| Title | User Story | MoSCoW Priority |
+|---------|----------------------|------------------------------|
+| Authentication - Sign up | As a user, I can create a new account so that I can access all the features available to registered users. | MUST HAVE |
+| Authentication - Sign in and Logged-In Status | As a user, I can sign in to the app and know whether I am logged in or not so that I can acess functionality for logged-in users. | MUST HAVE |
+| Authentication - Refreshing Access Tokens    | As a user, I can maintain a Logged-in status until I choose to log out so that my user experience is not compromised. | SHOULD HAVE |
+| Profile Management | As a user, I can create and update my profile details and profile picture so that others can learn more about me. | SHOULD HAVE |
+| View User Profiles     | As a user, I can view other user profiles so that I can learn about their interests and activities. | SHOULD HAVE |
+
+#### Epic 2: Navigation and Content Discovery
+Enabling users to seamlessly navigate the platform and discover content through menus, search functionality, and curated feeds.
+
+**User Stories**
+| Title | User Story | MoSCoW Priority |
+|---------|----------------------|------------------------------|
+| Navigation | As a user, I can view a navbar from every page so that I can navigate easily between pages. | MUST HAVE |
+| Search Content | As a user, I can search for posts, events, or profiles by keyword so that I can easily discover. | SHOULD HAVE |
+| View List of Posts | As a user I can view all posts, ordered by most recently created first so that I am up to date with the newest content. | MUST HAVE |
+| View a Post | As a user, I can view the details of a single post so that I can learn more about it and comment on it. | Must HAVE |
+| View Liked Posts | As a logged-in user I can view the posts I have liked so that I can revisit and engage with the content I enjoy the most. | SHOULD HAVE |
+| View Posts of Followed Users | As a logged-in user I can view posts created by users I follow so that I can keep up with their latest updates and activity. | SHOULD HAVE |
+| View List of Events | As a user I can view all events so that I can stay informed about upcoming activities. | MUST HAVE |
+
+#### Epic 3: Posts and Engagement
+Creating, editing, and deleting posts, as well as interacting with them through likes, comments, and threaded discussions.
+
+**User Stories**
+| Title | User Story | MoSCoW Priority |
+|---------|----------------------|------------------------------|
+| Create a Post | As a user, I can create a post so that I can share experiences and interests. | MUST HAVE |
+| Edit and Delete Post | As a user, I can edit and delete my posts so that I keep my content accurate. | SHOULD HAVE |
+| Like and Unlike Posts | As a user, I can like and unlike posts so that I can show appreciation. | MUST HAVE |
+| Comment on Posts | As a user, I can comment on posts so that I can engage in discussions. | Must HAVE |
+| Edit and Delete Comments | As a user, I can edit and delete my comments so that I can maintain the accuracy of my feedback and remove any comments I no longer want to share. | SHOULD HAVE |
+
+#### Epic 4: Events Management
+Creating, managing, and engaging with events, including RSVP functionality and viewing attendee count.
+
+**User Stories**
+| Title | User Story | MoSCoW Priority |
+|---------|----------------------|------------------------------|
+| Create an Event | As a user, I can create events so that others can join. | MUST HAVE |
+| Edit and Delete Event | As a user, I can edit and delete my events so that I keep my content accurate. | SHOULD HAVE |
+| RSVP to Events | As a user, I can RSVP to an event so that I indicate if I'm attending. | MUST HAVE |
+
+#### Epic 5: Social Interaction and Notifications
+Encapsulates user connections (following/unfollowing) and notification systems that keep users informed about relevant interactions and updates.
+
+**User Stories**
+| Title | User Story | MoSCoW Priority |
+|---------|----------------------|------------------------------|
+| Follow Other Users | As a user, I can follow and unfollow other users so that I can stay updated on their content. | MUST HAVE |
+| Follower Notifications | As a user, I can be notified when someone new follows me so that I am aware of my profile engagement. | SHOULD HAVE |
+| Post and Event Engagement Notifications | As a user, I can recieve notifications so that I am aware of my content engagement. | MUST HAVE |
+| Notifications Page | As a logged-in user, I can view all my notifications on a dedicated page so that I can stay updated on interactions related to my posts, follows, and events. | MUST HAVE |
+
 
 
 ## Structural Plane
@@ -173,9 +273,92 @@ Chronicle is a modern social media platform designed to bring communities closer
 
 ### WireFrames
 
-.
-.
-.
+I've used [Balsamiq](https://balsamiq.com/wireframes) to design the site wireframes.
+
+**Home Page Wireframes**
+<details>
+<summary>Click to View Home Page wireframes</summary>
+
+
+**Desktop**
+
+![wireframes](documentation/wireframes/home.png)
+</details>
+
+
+<details>
+<summary>Click to View Home Page after Login wireframes</summary>
+
+**Desktop**
+
+![wireframes](documentation/wireframes/logged-inhome.png)
+</details>
+
+
+**My Feed, My likes Page Wireframes**
+<details>
+<summary>"Click to View User-Specific Post Page Wireframes"</summary>
+
+
+**Desktop**
+
+![wireframes](documentation/wireframes/feed-liked.png)
+</details>
+
+**Post Detail Page Wireframes**
+<details>
+<summary>"Click to View Post Detail Page Wireframes"</summary>
+
+
+**Desktop**
+
+![wireframes](documentation/wireframes/detail-view.png)
+</details>
+
+**Events, My Events Page Wireframes**
+<details>
+<summary>"Click to View Page Wireframes"</summary>
+
+
+**Desktop**
+
+![wireframes](documentation/wireframes/events-myevents.png)
+</details>
+
+**Notifications Page Wireframes**
+<details>
+<summary>"Click to View Notifications Page Wireframes"</summary>
+
+
+**Desktop**
+
+![wireframes](documentation/wireframes/notifications.png)
+</details>
+
+**Add and Edit Post Page Wireframes**
+<details>
+<summary>"Click to View Content create or edit Page Wireframes"</summary>
+
+
+**Desktop**
+
+![wireframes](documentation/wireframes/add-editpost.png)
+</details>
+
+The Event Creation and Edit pages are similar but with a different form.
+
+**Profile Page Wireframes**
+<details>
+<summary>"Click to View Profile Page Wireframes"</summary>
+
+
+**Desktop**
+
+![wireframes](documentation/wireframes/myprofile.png)
+</details>
+
+
+
 
 ##  Database Schema - Entity relationship Diagram
 
