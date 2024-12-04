@@ -32,12 +32,10 @@
   width: 100%;
 }
 
-
 .Bright:hover {
   background-color: #7b66fa;
   color: #ffffff;
 }
-
 
 .Purple,
 .PurpleOutline:hover {

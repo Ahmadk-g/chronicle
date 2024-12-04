@@ -1,27 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image';
 
-import styles from "../../styles/PostEventCreateEditForm.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
+import styles from '../../styles/PostEventCreateEditForm.module.css';
+import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
 
-import { useHistory, useParams } from "react-router";
-import { axiosReq } from "../../api/AxiosDefaults";
+import { useHistory, useParams } from 'react-router';
+import { axiosReq } from '../../api/AxiosDefaults';
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
-    title: "",
-    content: "",
-    image: "",
+    title: '',
+    content: '',
+    image: '',
   });
   const { title, content, image } = postData;
 
@@ -35,7 +35,7 @@ function PostEditForm() {
         const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, content, image, is_owner } = data;
 
-        is_owner ? setPostData({ title, content, image }) : history.push("/");
+        is_owner ? setPostData({ title, content, image }) : history.push('/');
       } catch (err) {
         // console.log(err);
       }
@@ -75,11 +75,11 @@ function PostEditForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("title", title);
-    formData.append("content", content);
+    formData.append('title', title);
+    formData.append('content', content);
 
     if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput.current.files[0]);
+      formData.append('image', imageInput.current.files[0]);
     }
 
     try {
@@ -132,7 +132,10 @@ function PostEditForm() {
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Bright}`}
+        type="submit"
+      >
         save
       </Button>
     </div>
@@ -140,11 +143,9 @@ function PostEditForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      
       <Row>
-  
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <div className="text-center mb-3" >
+          <div className="text-center mb-3">
             <h2 className="text-muted">Edit Post</h2>
           </div>
           <Container
@@ -179,7 +180,11 @@ function PostEditForm() {
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-        <Col md={5} lg={4} className={`${styles.DataForm} d-none d-md-block p-0 p-md-2`}>
+        <Col
+          md={5}
+          lg={4}
+          className={`${styles.DataForm} d-none d-md-block p-0 p-md-2`}
+        >
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>

@@ -20,11 +20,11 @@
   cursor: pointer;
   transition: all ease-in-out 0.3s;
   color: #ffffff;
-  background-color:  rgba(255, 118, 244, 0.6) !important;
+  background-color: rgba(255, 118, 244, 0.6) !important;
 }
 
-.DropdownItemActive{
-  background-color:  rgba(128, 42, 199, 0.6) !important;
+.DropdownItemActive {
+  background-color: rgba(128, 42, 199, 0.6) !important;
   color: white !important;
 }
 

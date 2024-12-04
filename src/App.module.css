@@ -1,5 +1,5 @@
 .App {
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background-color: #f8f8f8;
   min-height: 100vh;
 }
@@ -32,6 +32,7 @@
   box-sizing: border-box;
 }
 
+/* Am i using this? */
 a {
   color: #555555;
   transition: color ease-in-out 0.3s;
@@ -41,17 +42,19 @@ a:hover {
   text-decoration: none;
 }
 
+/* Am i using this */
 a:hover i {
   color: #ff76f4;
   transition: color ease-in-out 0.3s;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
 i {
-  color: #cfced3;
+  color: #a5a4a7;
+  /* color: #cfced3; */
   font-size: 1.6rem;
   padding: 7px;
   vertical-align: middle;
@@ -81,4 +84,3 @@ figure {
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-

@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import styles from "../../styles/Event.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import React, { useEffect, useState } from 'react';
+import styles from '../../styles/Event.module.css';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
-import Badge from "react-bootstrap/Badge";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Media from 'react-bootstrap/Media';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Badge from 'react-bootstrap/Badge';
 
-import { Link, useHistory } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown";
-import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
+import { Link, useHistory } from 'react-router-dom';
+import Avatar from '../../components/Avatar';
+import { axiosReq, axiosRes } from '../../api/AxiosDefaults';
+import { MoreDropdown } from '../../components/MoreDropdown';
+import DeleteConfirmationModal from '../../components/DeleteConfirmationModal';
 
 const Event = (props) => {
   const {
@@ -53,9 +53,12 @@ const Event = (props) => {
       await axiosRes.delete(`/events/${id}/`);
 
       // Check if the user came from the edit page
-      const previousPage = history.location.state?.from
-      if (previousPage === `/events/${id}/edit` || previousPage === `/events/create`) {
-        history.push("/")
+      const previousPage = history.location.state?.from;
+      if (
+        previousPage === `/events/${id}/edit` ||
+        previousPage === `/events/create`
+      ) {
+        history.push('/');
       } else {
         history.goBack();
       }
@@ -68,111 +71,140 @@ const Event = (props) => {
     if (attendance_id) {
       const fetchStatus = async () => {
         try {
-            const response = await axiosReq.get(`/attendings/${attendance_id}/`);
-            setAttendanceStatus(response.data.status);
+          const response = await axiosReq.get(`/attendings/${attendance_id}/`);
+          setAttendanceStatus(response.data.status);
         } catch (err) {
-            console.error("Error fetching attendance status", err);
+          console.error('Error fetching attendance status', err);
         }
       };
       fetchStatus();
     }
   }, [attendance_id]);
 
-    // Handle marking as "Interested"
-    const handleInterested = async () => {
-        try {
-          if (attendanceStatus === "interested") {
-            await axiosRes.delete(`/attendings/${attendance_id}/`);
-            // Update the interested count and reset attendanceStatus
-            setAttendanceStatus(null);
-            props.setEvents(prevEvents => ({
-              ...prevEvents,
-              results: prevEvents.results.map(event => 
-                event.id === id
-                  ? { ...event, interested_count: event.interested_count - 1 }
-                  : event
-              ),
-            }));
+  // Handle marking as "Interested"
+  const handleInterested = async () => {
+    try {
+      if (attendanceStatus === 'interested') {
+        await axiosRes.delete(`/attendings/${attendance_id}/`);
+        // Update the interested count and reset attendanceStatus
+        setAttendanceStatus(null);
+        props.setEvents((prevEvents) => ({
+          ...prevEvents,
+          results: prevEvents.results.map((event) =>
+            event.id === id
+              ? { ...event, interested_count: event.interested_count - 1 }
+              : event
+          ),
+        }));
+      } else {
+        const { data } = await axiosRes.post(`/attendings/`, {
+          event: id,
+          status: 'interested',
+        });
+        // Update the interested count and set attendanceStatus
+        setAttendanceStatus('interested');
+        props.setEvents((prevEvents) => ({
+          ...prevEvents,
+          results: prevEvents.results.map((event) =>
+            event.id === id
+              ? {
+                  ...event,
+                  interested_count: event.interested_count + 1,
+                  attendance_id: data.id,
+                }
+              : event
+          ),
+        }));
+      }
+    } catch (err) {
+      console.error('Error handling interested status', err);
+    }
+  };
 
-          } else {
-            const {data} = await axiosRes.post(`/attendings/`, { event: id, status: 'interested' });
-            // Update the interested count and set attendanceStatus
-            setAttendanceStatus("interested");
-            props.setEvents(prevEvents => ({
-              ...prevEvents,
-              results: prevEvents.results.map(event => 
-                event.id === id
-                  ? { ...event, interested_count: event.interested_count + 1, attendance_id: data.id }
-                  : event
-              ),
-            }));
-          }
-        } catch (err) {
-          console.error("Error handling interested status", err);
-        }
-      };
-    
-      // Handle marking as "Attending"
-      const handleAttending = async () => {
-        try {
-          if (attendanceStatus === "attending") {
-            await axiosRes.delete(`/attendings/${attendance_id}/`);
-            // Update the attending count and reset attendanceStatus
-            setAttendanceStatus(null);
-            props.setEvents(prevEvents => ({
-              ...prevEvents,
-              results: prevEvents.results.map(event =>
-                event.id === id
-                  ? { ...event, attending_count: event.attending_count - 1 }
-                  : event
-              )
-            }));
-          } else {
-            const {data} = await axiosRes.post(`/attendings/`, { event: id, status: 'attending' });
-            // Update the attending count and set attendanceStatus
-            setAttendanceStatus("attending");
-            props.setEvents(prevEvents => ({
-              ...prevEvents,
-              results: prevEvents.results.map(event =>
-                event.id === id
-                  ? { ...event, attending_count: event.attending_count + 1, attendance_id: data.id }
-                  : event
-              )
-            }));
-          }
-        } catch (err) {
-          console.error("Error handling attending status", err);
-        }
-      };
-    
-      // Switch between Interested and Attending
-      const handleSwitch = async (newStatus) => {
-        if (attendanceStatus === "interested" && newStatus === "attending") {
-          await axiosRes.delete(`/attendings/${attendance_id}/`);
-          const {data} = await axiosRes.post(`/attendings/`, { event: id, status: "attending" });
-          setAttendanceStatus("attending");
-          props.setEvents(prevEvents => ({
-            ...prevEvents,
-            results: prevEvents.results.map(event =>
-              event.id === id
-                ? { ...event, interested_count: event.interested_count - 1, attending_count: event.attending_count + 1, attendance_id: data.id }
-                : event
-            )
-          }));
-        } else if (attendanceStatus === "attending" && newStatus === "interested") {
-          await axiosRes.delete(`/attendings/${attendance_id}/`);
-          const {data} = await axiosRes.post(`/attendings/`, { event: id, status: "interested" });
-          setAttendanceStatus("interested");
-          props.setEvents(prevEvents => ({
-            ...prevEvents,
-            results: prevEvents.results.map(event =>
-              event.id === id
-                ? { ...event, attending_count: event.attending_count - 1, interested_count: event.interested_count + 1, attendance_id: data.id }
-                : event
-            )
-          }));
-        }
-      };
+  // Handle marking as "Attending"
+  const handleAttending = async () => {
+    try {
+      if (attendanceStatus === 'attending') {
+        await axiosRes.delete(`/attendings/${attendance_id}/`);
+        // Update the attending count and reset attendanceStatus
+        setAttendanceStatus(null);
+        props.setEvents((prevEvents) => ({
+          ...prevEvents,
+          results: prevEvents.results.map((event) =>
+            event.id === id
+              ? { ...event, attending_count: event.attending_count - 1 }
+              : event
+          ),
+        }));
+      } else {
+        const { data } = await axiosRes.post(`/attendings/`, {
+          event: id,
+          status: 'attending',
+        });
+        // Update the attending count and set attendanceStatus
+        setAttendanceStatus('attending');
+        props.setEvents((prevEvents) => ({
+          ...prevEvents,
+          results: prevEvents.results.map((event) =>
+            event.id === id
+              ? {
+                  ...event,
+                  attending_count: event.attending_count + 1,
+                  attendance_id: data.id,
+                }
+              : event
+          ),
+        }));
+      }
+    } catch (err) {
+      console.error('Error handling attending status', err);
+    }
+  };
+
+  // Switch between Interested and Attending
+  const handleSwitch = async (newStatus) => {
+    if (attendanceStatus === 'interested' && newStatus === 'attending') {
+      await axiosRes.delete(`/attendings/${attendance_id}/`);
+      const { data } = await axiosRes.post(`/attendings/`, {
+        event: id,
+        status: 'attending',
+      });
+      setAttendanceStatus('attending');
+      props.setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((event) =>
+          event.id === id
+            ? {
+                ...event,
+                interested_count: event.interested_count - 1,
+                attending_count: event.attending_count + 1,
+                attendance_id: data.id,
+              }
+            : event
+        ),
+      }));
+    } else if (attendanceStatus === 'attending' && newStatus === 'interested') {
+      await axiosRes.delete(`/attendings/${attendance_id}/`);
+      const { data } = await axiosRes.post(`/attendings/`, {
+        event: id,
+        status: 'interested',
+      });
+      setAttendanceStatus('interested');
+      props.setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((event) =>
+          event.id === id
+            ? {
+                ...event,
+                attending_count: event.attending_count - 1,
+                interested_count: event.interested_count + 1,
+                attendance_id: data.id,
+              }
+            : event
+        ),
+      }));
+    }
+  };
 
   return (
     <Card className={styles.Post}>
@@ -185,7 +217,7 @@ const Event = (props) => {
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {is_owner && eventPage && (
-              <MoreDropdown 
+              <MoreDropdown
                 handleEdit={handleEdit}
                 handleDelete={() => setShowDeleteModal(true)}
               />
@@ -194,30 +226,33 @@ const Event = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/events/${id}`}>
-        <Card.Img
-          src={image}
-          alt={title}
-          className={styles.EventImage}
-        />
+        <Card.Img src={image} alt={title} className={styles.EventImage} />
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {location && <Card.Text><i className="fa-solid fa-location-dot"></i>{location}</Card.Text>}
+        {location && (
+          <Card.Text>
+            <i className="fa-solid fa-location-dot"></i>
+            {location}
+          </Card.Text>
+        )}
         {description && <Card.Text>{description}</Card.Text>}
         <div className="d-flex justify-content-around">
           <div className={styles.TimeContainer}>
             Date
             <div className="d-flex">
-              {event_date && <Card.Text className="ml-2">{event_date}</Card.Text>}
+              {event_date && (
+                <Card.Text className="ml-2">{event_date}</Card.Text>
+              )}
             </div>
             <div className="d-flex">
-            {(start_time || end_time) && (
-              <Card.Text className="ml-2">
-                {start_time && `${start_time}`}
-                {start_time && end_time && ' - '}
-                {end_time && `${end_time}`}
-              </Card.Text>
-            )}
+              {(start_time || end_time) && (
+                <Card.Text className="ml-2">
+                  {start_time && `${start_time}`}
+                  {start_time && end_time && ' - '}
+                  {end_time && `${end_time}`}
+                </Card.Text>
+              )}
             </div>
           </div>
           <div>
@@ -228,32 +263,49 @@ const Event = (props) => {
           </div>
         </div>
         <div className="d-flex justify-content-end">
-        {/* Interested Button */}
+          {/* Interested Button */}
           <div className="d-flex">
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>You can't mark your on own event as interested!</Tooltip>}
+                overlay={
+                  <Tooltip>
+                    You can't mark your on own event as interested!
+                  </Tooltip>
+                }
               >
-                <Button className={styles.ButtonDisabled} variant="secondary" disabled>
+                <Button
+                  className={styles.ButtonDisabled}
+                  variant="secondary"
+                  disabled
+                >
                   Interested
-                  <span style={{marginLeft: '10px'}}>{interested_count}</span>
+                  <span style={{ marginLeft: '10px' }}>{interested_count}</span>
                 </Button>
               </OverlayTrigger>
-            ) : attendance_id && attendanceStatus === "interested" ? (
-              <Button className={`${styles.ButtonActive}`} onClick={handleInterested}>
+            ) : attendance_id && attendanceStatus === 'interested' ? (
+              <Button
+                className={`${styles.ButtonActive}`}
+                onClick={handleInterested}
+              >
                 Interested
-                <span style={{marginLeft: '10px'}}>{interested_count}</span>
+                <span style={{ marginLeft: '10px' }}>{interested_count}</span>
               </Button>
-            ) : attendance_id && attendanceStatus === "attending"? (
-              <Button className={styles.ButtonOutline} onClick={() => handleSwitch("interested")}>
+            ) : attendance_id && attendanceStatus === 'attending' ? (
+              <Button
+                className={styles.ButtonOutline}
+                onClick={() => handleSwitch('interested')}
+              >
                 Interested
-                <span style={{marginLeft: '10px'}}>{interested_count}</span>
+                <span style={{ marginLeft: '10px' }}>{interested_count}</span>
               </Button>
             ) : currentUser ? (
-              <Button className={styles.ButtonOutline} onClick={handleInterested}>
+              <Button
+                className={styles.ButtonOutline}
+                onClick={handleInterested}
+              >
                 Interested
-                <span style={{marginLeft: '10px'}}>{interested_count}</span>
+                <span style={{ marginLeft: '10px' }}>{interested_count}</span>
               </Button>
             ) : (
               <OverlayTrigger
@@ -262,7 +314,7 @@ const Event = (props) => {
               >
                 <Button className={styles.ButtonOutline} onClick={() => {}}>
                   Interested
-                  <span style={{marginLeft: '10px'}}>{interested_count}</span>
+                  <span style={{ marginLeft: '10px' }}>{interested_count}</span>
                 </Button>
               </OverlayTrigger>
             )}
@@ -272,27 +324,41 @@ const Event = (props) => {
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>You can't mark your on own event as attending!</Tooltip>}
+                overlay={
+                  <Tooltip>
+                    You can't mark your on own event as attending!
+                  </Tooltip>
+                }
               >
-                <Button className={styles.ButtonDisabled} variant="secondary" disabled>
+                <Button
+                  className={styles.ButtonDisabled}
+                  variant="secondary"
+                  disabled
+                >
                   Attending
-                  <span style={{marginLeft: '10px'}}>{attending_count}</span>
+                  <span style={{ marginLeft: '10px' }}>{attending_count}</span>
                 </Button>
               </OverlayTrigger>
-            ) : attendance_id && attendanceStatus === "attending"? (
+            ) : attendance_id && attendanceStatus === 'attending' ? (
               <Button className={styles.ButtonActive} onClick={handleAttending}>
                 Attending
-                <span style={{marginLeft: '10px'}}>{attending_count}</span>
+                <span style={{ marginLeft: '10px' }}>{attending_count}</span>
               </Button>
-            ) : attendance_id && attendanceStatus === "interested"? (
-                  <Button className={styles.ButtonOutline} onClick={() => handleSwitch("attending")}>
-                    Attending 
-                    <span style={{marginLeft: '15px'}}>{attending_count}</span>
-                  </Button>
+            ) : attendance_id && attendanceStatus === 'interested' ? (
+              <Button
+                className={styles.ButtonOutline}
+                onClick={() => handleSwitch('attending')}
+              >
+                Attending
+                <span style={{ marginLeft: '15px' }}>{attending_count}</span>
+              </Button>
             ) : currentUser ? (
-              <Button className={styles.ButtonOutline} onClick={handleAttending}>
-                Attending 
-                <span style={{marginLeft: '15px'}}>{attending_count}</span>
+              <Button
+                className={styles.ButtonOutline}
+                onClick={handleAttending}
+              >
+                Attending
+                <span style={{ marginLeft: '15px' }}>{attending_count}</span>
               </Button>
             ) : (
               <OverlayTrigger
@@ -301,7 +367,7 @@ const Event = (props) => {
               >
                 <Button className={styles.ButtonOutline} onClick={() => {}}>
                   Attending
-                  <span style={{marginLeft: '15px'}}>{attending_count}</span>
+                  <span style={{ marginLeft: '15px' }}>{attending_count}</span>
                 </Button>
               </OverlayTrigger>
             )}

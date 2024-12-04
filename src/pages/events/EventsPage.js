@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
-import Event from "./Event";
-import Asset from "../../components/Asset";
+import Event from './Event';
+import Asset from '../../components/Asset';
 
-import appStyles from "../../App.module.css";
-import styles from "../../styles/EventsPage.module.css";
-import { useLocation } from "react-router";
-import { axiosReq } from "../../api/AxiosDefaults";
+import appStyles from '../../App.module.css';
+import styles from '../../styles/EventsPage.module.css';
+import { useLocation } from 'react-router';
+import { axiosReq } from '../../api/AxiosDefaults';
 
-import NoResults from "../../assets/no-results.png";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
-import PopularProfiles from "../profiles/PopularProfiles";
-import { useRedirect } from "../../hooks/useRedirect";
+import NoResults from '../../assets/no-results.png';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/utils';
+import PopularProfiles from '../profiles/PopularProfiles';
+import { useRedirect } from '../../hooks/useRedirect';
 
-function EventsPage({ message, filter = "" }) {
+function EventsPage({ message, filter = '' }) {
   const [events, setEvents] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
-  useRedirect(
-    pathname === "/myevents" ? "loggedOut" : null
-  );
+  useRedirect(pathname === '/myevents' ? 'loggedOut' : null);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data } = await axiosReq.get(`/events/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(
+          `/events/?${filter}search=${query}`
+        );
 
         setEvents(data);
         setHasLoaded(true);
@@ -55,8 +55,8 @@ function EventsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <div className="text-center mb-3" >
-        {pathname === "/myevents" ? (
+        <div className="text-center mb-3">
+          {pathname === '/myevents' ? (
             <h3 className="text-muted">Events You've Marked</h3>
           ) : (
             <h2 className="text-muted">Events</h2>

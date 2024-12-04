@@ -12,7 +12,7 @@
   vertical-align: middle;
 }
 
-.icon:hover{
+.icon:hover {
   color: #212529;
 }
 
@@ -51,10 +51,9 @@
   border-color: transparent;
   border-bottom: 1px solid #ff76f4 !important;
   color: #212529;
-
 }
 
-.ButtonActive{
+.ButtonActive {
   background-color: #ffffff !important;
   border-color: transparent;
   border-bottom: 1px solid #ff76f4 !important;
@@ -66,7 +65,6 @@
   background-color: #ffffff !important;
   border-bottom: 1px solid #ff76f4 !important;
   box-shadow: none;
-
 }
 
 .ProfileTabs {

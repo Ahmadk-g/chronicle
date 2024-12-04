@@ -1,47 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
-import Post from "./Post";
-import Asset from "../../components/Asset";
+import Post from './Post';
+import Asset from '../../components/Asset';
 
-import appStyles from "../../App.module.css";
-import styles from "../../styles/PostsPage.module.css";
-import { useLocation } from "react-router";
-import { axiosReq } from "../../api/AxiosDefaults";
+import appStyles from '../../App.module.css';
+import styles from '../../styles/PostsPage.module.css';
+import { useLocation } from 'react-router';
+import { axiosReq } from '../../api/AxiosDefaults';
 
-import NoResults from "../../assets/no-results.png";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
-import PopularProfiles from "../profiles/PopularProfiles";
-import { useRedirect } from "../../hooks/useRedirect";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import NoResults from '../../assets/no-results.png';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/utils';
+import PopularProfiles from '../profiles/PopularProfiles';
+import { useRedirect } from '../../hooks/useRedirect';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
-function PostsPage({ message, filter = "" }) {
+function PostsPage({ message, filter = '' }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   const currentUser = useCurrentUser();
 
   // Determine the heading based on pathname or filter
   const getPageHeading = () => {
-    if (pathname === "/feed") {
+    if (pathname === '/feed') {
       return (
-        <div className="text-center mb-3" >
+        <div className="text-center mb-3">
           <h2 className="text-muted">Your Feed</h2>
         </div>
       );
     }
-    if (pathname === "/liked") {
+    if (pathname === '/liked') {
       return (
-        <div className="text-center mb-3" >
-            <h2 className="text-muted">Posts You've Liked</h2>
+        <div className="text-center mb-3">
+          <h2 className="text-muted">Posts You've Liked</h2>
         </div>
       );
     }
@@ -50,9 +50,8 @@ function PostsPage({ message, filter = "" }) {
 
   // Use useRedirect conditionally
   useRedirect(
-    pathname === "/feed" || pathname === "/liked" ? "loggedOut" : null
+    pathname === '/feed' || pathname === '/liked' ? 'loggedOut' : null
   );
-
 
   useEffect(() => {
     const fetchPosts = async () => {

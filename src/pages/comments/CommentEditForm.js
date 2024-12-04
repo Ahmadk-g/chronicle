@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import { axiosRes } from "../../api/AxiosDefaults";
+import Form from 'react-bootstrap/Form';
+import { axiosRes } from '../../api/AxiosDefaults';
 
-import styles from "../../styles/CommentCreateEditForm.module.css";
+import styles from '../../styles/CommentCreateEditForm.module.css';
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
@@ -27,7 +27,7 @@ function CommentEditForm(props) {
             ? {
                 ...comment,
                 content: formContent.trim(),
-                updated_at: "now",
+                updated_at: 'now',
               }
             : comment;
         }),

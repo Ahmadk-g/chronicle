@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Media from "react-bootstrap/Media";
-import { Link } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { MoreDropdown } from "../../components/MoreDropdown";
-import CommentEditForm from "./CommentEditForm";
-import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
+import React, { useState } from 'react';
+import Media from 'react-bootstrap/Media';
+import { Link } from 'react-router-dom';
+import Avatar from '../../components/Avatar';
+import { MoreDropdown } from '../../components/MoreDropdown';
+import CommentEditForm from './CommentEditForm';
+import DeleteConfirmationModal from '../../components/DeleteConfirmationModal';
 
-import styles from "../../styles/Comment.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosRes } from "../../api/AxiosDefaults";
+import styles from '../../styles/Comment.module.css';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { axiosRes } from '../../api/AxiosDefaults';
 
 const Comment = (props) => {
   const {

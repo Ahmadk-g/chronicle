@@ -726,3 +726,17 @@ Trigger messages provide helpful prompts to guide user interactions. For example
 <img src="documentation/features/interactive/triggermark.png" alt="Features" style="width: 250px; height: auto;">
 
 </details>
+
+
+## Authentication pages
+.
+.
+.
+
+# Future Features
+.
+.
+.
+
+# Testing & Validation
+

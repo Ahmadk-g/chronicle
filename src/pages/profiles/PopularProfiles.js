@@ -1,9 +1,9 @@
-import React from "react";
-import Container from "react-bootstrap/Container";
-import appStyles from "../../App.module.css";
-import Asset from "../../components/Asset";
-import Profile from "./Profile";
-import { useProfileData } from "../../contexts/ProfileDataContext";
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import appStyles from '../../App.module.css';
+import Asset from '../../components/Asset';
+import Profile from './Profile';
+import { useProfileData } from '../../contexts/ProfileDataContext';
 
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
@@ -11,7 +11,7 @@ const PopularProfiles = ({ mobile }) => {
   return (
     <Container
       className={`${appStyles.Content} ${
-        mobile && "d-lg-none text-center mb-3"
+        mobile && 'd-lg-none text-center mb-3'
       }`}
     >
       {popularProfiles.results.length ? (

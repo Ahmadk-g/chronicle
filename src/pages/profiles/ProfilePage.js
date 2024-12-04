@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
-import Asset from "../../components/Asset";
+import Asset from '../../components/Asset';
 
-import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
+import styles from '../../styles/ProfilePage.module.css';
+import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
 
-import PopularProfiles from "./PopularProfiles";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/AxiosDefaults";
+import PopularProfiles from './PopularProfiles';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useParams } from 'react-router';
+import { axiosReq } from '../../api/AxiosDefaults';
 import {
   useProfileData,
   useSetProfileData,
-} from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Post from "../posts/Post";
-import Event from "../events/Event";
-import { fetchMoreData } from "../../utils/utils";
-import NoResults from "../../assets/no-results.png";
-import { ProfileEditDropdown } from "../../components/MoreDropdown";
+} from '../../contexts/ProfileDataContext';
+import { Button, Image } from 'react-bootstrap';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Post from '../posts/Post';
+import Event from '../events/Event';
+import { fetchMoreData } from '../../utils/utils';
+import NoResults from '../../assets/no-results.png';
+import { ProfileEditDropdown } from '../../components/MoreDropdown';
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
   const [profileEvents, setProfileEvents] = useState({ results: [] });
-  const [activeTab, setActiveTab] = useState("posts"); // show posts when landing on page
+  const [activeTab, setActiveTab] = useState('posts'); // show posts when landing on page
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
@@ -44,12 +44,15 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profilePosts }, { data: profileEvents }] =
-          await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/posts/?owner__profile=${id}`),
-            axiosReq.get(`/events/?owner__profile=${id}`),
-          ]);
+        const [
+          { data: pageProfile },
+          { data: profilePosts },
+          { data: profileEvents },
+        ] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/posts/?owner__profile=${id}`),
+          axiosReq.get(`/events/?owner__profile=${id}`),
+        ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
@@ -124,67 +127,67 @@ function ProfilePage() {
     <div className={`${styles.ProfileTabs} my-3 `}>
       <Button
         className={`${styles.Button} ${
-          activeTab === "posts" ? styles.ButtonActive : ""
+          activeTab === 'posts' ? styles.ButtonActive : ''
         } mx-2`}
-        onClick={() => setActiveTab("posts")}
+        onClick={() => setActiveTab('posts')}
       >
-        <i className= {`${styles.icon} fa-solid fa-stream`}></i>
-        
+        <i className={`${styles.icon} fa-solid fa-stream`}></i>
         Posts
       </Button>
       <Button
         className={`${styles.Button} ${
-          activeTab === "events" ? styles.ButtonActive : ""
+          activeTab === 'events' ? styles.ButtonActive : ''
         } mx-2`}
-        onClick={() => setActiveTab("events")}
+        onClick={() => setActiveTab('events')}
       >
-        <i className= {`${styles.icon} fa-solid fa-calendar`}></i>
+        <i className={`${styles.icon} fa-solid fa-calendar`}></i>
         Events
       </Button>
     </div>
   );
 
-  const mainProfileContent = activeTab === "posts" ? (
-    <>
-      <hr />
-      {profilePosts.results.length ? (
-        <InfiniteScroll
-          children={profilePosts.results.map((post) => (
-            <Post key={post.id} {...post} setPosts={setProfilePosts} />
-          ))}
-          dataLength={profilePosts.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!profilePosts.next}
-          next={() => fetchMoreData(profilePosts, setProfilePosts)}
-        />
-      ) : (
-        <Asset
-          src={NoResults}
-          message={`No results found, ${profile?.owner} hasn't posted yet.`}
-        />
-      )}
-    </>
-  ) : (
-    <>
-      <hr />
-      {profileEvents.results.length ? (
-        <InfiniteScroll
-          children={profileEvents.results.map((event) => (
-            <Event key={event.id} {...event} setEvents={setProfileEvents} />
-          ))}
-          dataLength={profileEvents.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!profileEvents.next}
-          next={() => fetchMoreData(profileEvents, setProfileEvents)}
-        />
-      ) : (
-        <Asset
-          src={NoResults}
-          message={`No results found, ${profile?.owner} hasn't created any events yet.`}
-        />
-      )}
-    </>
-  );
+  const mainProfileContent =
+    activeTab === 'posts' ? (
+      <>
+        <hr />
+        {profilePosts.results.length ? (
+          <InfiniteScroll
+            children={profilePosts.results.map((post) => (
+              <Post key={post.id} {...post} setPosts={setProfilePosts} />
+            ))}
+            dataLength={profilePosts.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!profilePosts.next}
+            next={() => fetchMoreData(profilePosts, setProfilePosts)}
+          />
+        ) : (
+          <Asset
+            src={NoResults}
+            message={`No results found, ${profile?.owner} hasn't posted yet.`}
+          />
+        )}
+      </>
+    ) : (
+      <>
+        <hr />
+        {profileEvents.results.length ? (
+          <InfiniteScroll
+            children={profileEvents.results.map((event) => (
+              <Event key={event.id} {...event} setEvents={setProfileEvents} />
+            ))}
+            dataLength={profileEvents.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!profileEvents.next}
+            next={() => fetchMoreData(profileEvents, setProfileEvents)}
+          />
+        ) : (
+          <Asset
+            src={NoResults}
+            message={`No results found, ${profile?.owner} hasn't created any events yet.`}
+          />
+        )}
+      </>
+    );
 
   return (
     <Row>

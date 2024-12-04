@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import styles from "../../styles/Post.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import React, { useState } from 'react';
+import styles from '../../styles/Post.module.css';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
-import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import Card from 'react-bootstrap/Card';
+import Media from 'react-bootstrap/Media';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
-import { Link, useHistory } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/AxiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown";
-import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
+import { Link, useHistory } from 'react-router-dom';
+import Avatar from '../../components/Avatar';
+import { axiosRes } from '../../api/AxiosDefaults';
+import { MoreDropdown } from '../../components/MoreDropdown';
+import DeleteConfirmationModal from '../../components/DeleteConfirmationModal';
 
 const Post = (props) => {
   const {
@@ -33,7 +33,7 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
-  
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleEdit = () => {
@@ -45,9 +45,12 @@ const Post = (props) => {
       await axiosRes.delete(`/posts/${id}/`);
 
       // Check if the user came from the edit page
-      const previousPage = history.location.state?.from
-      if (previousPage === `/posts/${id}/edit` || previousPage === `/posts/create`) {
-        history.push("/")
+      const previousPage = history.location.state?.from;
+      if (
+        previousPage === `/posts/${id}/edit` ||
+        previousPage === `/posts/create`
+      ) {
+        history.push('/');
       } else {
         history.goBack();
       }
@@ -58,33 +61,33 @@ const Post = (props) => {
 
   const handleLike = async () => {
     try {
-        const { data } = await axiosRes.post('/likes/', { post: id });
-        setPosts((prevPosts) => ({
-            ...prevPosts,
-            results: prevPosts.results.map((post) => {
-                return post.id === id
-                ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-                : post;
-            }),
-        }));
+      const { data } = await axiosRes.post('/likes/', { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+            : post;
+        }),
+      }));
     } catch (err) {
-        // console.log(err);
+      // console.log(err);
     }
   };
 
   const handleUnlike = async () => {
     try {
-        await axiosRes.delete(`/likes/${like_id}/`);
-        setPosts((prevPosts) => ({
-            ...prevPosts,
-            results: prevPosts.results.map((post) => {
-                return post.id === id
-                ? { ...post, likes_count: post.likes_count - 1, like_id: null }
-                : post;
-            }),
-        }));
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+            : post;
+        }),
+      }));
     } catch (err) {
-        // console.log(err);
+      // console.log(err);
     }
   };
 
@@ -119,7 +122,7 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own post!</Tooltip>}
             >
-              <i className={`far fa-heart ${styles.Disabled}`}/>
+              <i className={`far fa-heart ${styles.Disabled}`} />
             </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>

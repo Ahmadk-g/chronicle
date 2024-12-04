@@ -7,7 +7,7 @@
 }
 
 .PostCardHeader {
-  padding: 0.25rem 1rem
+  padding: 0.25rem 1rem;
 }
 
 .ButtonDisabled {
@@ -58,7 +58,6 @@
   background-color: #a02ac7;
   border-color: #a02ac7;
 }
-
 
 .TimeContainer {
   align-items: flex-start !important;

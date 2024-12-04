@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
-import { axiosReq } from "../../api/AxiosDefaults";
-import Notification from "./Notification";
-import Asset from "../../components/Asset";
-import appStyles from "../../App.module.css";
-import PopularProfiles from "../profiles/PopularProfiles";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
-import { useRedirect } from "../../hooks/useRedirect";
-
+import { axiosReq } from '../../api/AxiosDefaults';
+import Notification from './Notification';
+import Asset from '../../components/Asset';
+import appStyles from '../../App.module.css';
+import PopularProfiles from '../profiles/PopularProfiles';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/utils';
+import { useRedirect } from '../../hooks/useRedirect';
 
 function NotificationsPage() {
-  useRedirect("loggedOut");
+  useRedirect('loggedOut');
   const [notifications, setNotifications] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const { data } = await axiosReq.get("/notifications/");
+        const { data } = await axiosReq.get('/notifications/');
         setNotifications(data);
 
         // Mark notifications as read
-        await axiosReq.patch("/notifications/mark-all-as-read/");
+        await axiosReq.patch('/notifications/mark-all-as-read/');
 
         setHasLoaded(true);
       } catch (err) {
@@ -35,32 +34,37 @@ function NotificationsPage() {
     };
     setHasLoaded(false);
     const timer = setTimeout(() => {
-        fetchNotifications();
+      fetchNotifications();
     }, 1000);
 
     return () => {
       clearTimeout(timer);
     };
-    
   }, []);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <div className="text-center mb-3" >
+        <div className="text-center mb-3">
           <h2 className="text-muted">Notifications</h2>
         </div>
-        <Container className={appStyles.Content} style={{maxWidth: "720px"}}>
+        <Container className={appStyles.Content} style={{ maxWidth: '720px' }}>
           {hasLoaded ? (
             <>
               {notifications.results.length ? (
                 <InfiniteScroll
                   children={notifications.results.map((notification) => (
-                    <Notification key={notification.id} {...notification} setNotifications={setNotifications} />
+                    <Notification
+                      key={notification.id}
+                      {...notification}
+                      setNotifications={setNotifications}
+                    />
                   ))}
                   dataLength={notifications.results.length}
                   loader={<Asset spinner />}
-                  hasMore={!!notifications.next && notifications.results.length < 30}
+                  hasMore={
+                    !!notifications.next && notifications.results.length < 30
+                  }
                   next={() => fetchMoreData(notifications, setNotifications)}
                 />
               ) : (

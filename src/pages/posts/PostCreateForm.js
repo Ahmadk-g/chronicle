@@ -1,33 +1,33 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image';
 
-import Asset from "../../components/Asset";
+import Asset from '../../components/Asset';
 
-import Upload from "../../assets/upload.png";
+import Upload from '../../assets/upload.png';
 
-import styles from "../../styles/PostEventCreateEditForm.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
+import styles from '../../styles/PostEventCreateEditForm.module.css';
+import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
 
-import { useHistory } from "react-router";
-import { axiosReq } from "../../api/AxiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
+import { useHistory } from 'react-router';
+import { axiosReq } from '../../api/AxiosDefaults';
+import { useRedirect } from '../../hooks/useRedirect';
 
 function PostCreateForm() {
-  useRedirect("loggedOut");
+  useRedirect('loggedOut');
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
-    title: "",
-    content: "",
-    image: "",
+    title: '',
+    content: '',
+    image: '',
   });
   const { title, content, image } = postData;
 
@@ -55,11 +55,11 @@ function PostCreateForm() {
         image: URL.createObjectURL(event.target.files[0]),
       });
 
-    // Clear the error for the image field
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      image: null,
-    }));
+      // Clear the error for the image field
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        image: null,
+      }));
     }
   };
 
@@ -67,12 +67,12 @@ function PostCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', imageInput.current.files[0]);
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
+      const { data } = await axiosReq.post('/posts/', formData);
       history.push(`/posts/${data.id}`, { from: history.location.pathname });
     } catch (err) {
       // console.log(err);
@@ -121,7 +121,10 @@ function PostCreateForm() {
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Bright}`}
+        type="submit"
+      >
         create
       </Button>
     </div>
@@ -129,10 +132,9 @@ function PostCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <div className="text-center mb-3" >
+          <div className="text-center mb-3">
             <h2 className="text-muted">Create Post</h2>
           </div>
           <Container
@@ -181,7 +183,11 @@ function PostCreateForm() {
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-        <Col md={5} lg={4} className={`${styles.DataForm} d-none d-md-block p-0 p-md-2`}>
+        <Col
+          md={5}
+          lg={4}
+          className={`${styles.DataForm} d-none d-md-block p-0 p-md-2`}
+        >
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>

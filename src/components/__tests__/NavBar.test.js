@@ -1,17 +1,16 @@
 import React from 'react';
-import Dropdown  from 'react-bootstrap/Dropdown';
-import { render, screen, fireEvent, act } from "@testing-library/react";
-import { BrowserRouter as Router } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import {
   CurrentUserProvider,
   SetCurrentUserContext,
 } from '../../contexts/CurrentUserContext';
 
-import NavBar from "../NavBar";
-import axios from "axios";
+import NavBar from '../NavBar';
+import axios from 'axios';
 import { axiosReq, axiosRes } from '../../api/AxiosDefaults';
 import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter
-
 
 jest.mock('axios');
 jest.mock('../../api/AxiosDefaults', () => {
@@ -39,14 +38,14 @@ jest.mock('../../api/AxiosDefaults', () => {
 test('displays correct navigation links for logged-out users', () => {
   // Render the NavBar component with no user (logged out state)
   render(
-      <Router>
-        <CurrentUserProvider>
-          <SetCurrentUserContext.Provider value={jest.fn()}>
-            <NavBar />
-          </SetCurrentUserContext.Provider>
-        </CurrentUserProvider>
-      </Router>
-    );
+    <Router>
+      <CurrentUserProvider>
+        <SetCurrentUserContext.Provider value={jest.fn()}>
+          <NavBar />
+        </SetCurrentUserContext.Provider>
+      </CurrentUserProvider>
+    </Router>
+  );
 
   // Check that "Sign In" and "Sign Up" links are visible
   expect(screen.getByText(/Sign in/i)).toBeInTheDocument();
@@ -83,12 +82,12 @@ describe('NavBar', () => {
   });
 
   const mockCurrentUser = {
-    username: "testuser",
-    profile_image: "test-image-url.jpg",
+    username: 'testuser',
+    profile_image: 'test-image-url.jpg',
     profile_id: 1,
   };
-  
-  test("toggles menu and displays logged-in user links", () => {
+
+  test('toggles menu and displays logged-in user links', () => {
     // Mock currentUser to simulate a logged-in state
     jest.spyOn(React, 'useContext').mockImplementation((context) => {
       if (context === CurrentUserProvider) {
@@ -101,7 +100,7 @@ describe('NavBar', () => {
 
     // Check that the avatar dropdown is now visible
     const avatarToggle = screen.getByLabelText(/toggle avatar menu/i);
-    fireEvent.click(avatarToggle);    
+    fireEvent.click(avatarToggle);
 
     // Assert that logged-in menu items are displayed
     expect(screen.getByText(/my profile/i)).toBeInTheDocument();
