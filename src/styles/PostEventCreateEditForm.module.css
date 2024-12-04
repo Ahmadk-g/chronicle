@@ -1,3 +1,7 @@
 .Container {
-    min-height: 343px;
-  }
+  min-height: 343px;
+}
+
+.DataForm {
+  margin-top: 55px;
+}

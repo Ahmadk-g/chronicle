@@ -140,7 +140,11 @@ function PostEditForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
+      
       <Row>
+        <div className="text-center mb-3" >
+          <h2 className="text-muted">Edit Post</h2>
+        </div>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
@@ -174,7 +178,7 @@ function PostEditForm() {
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+        <Col md={5} lg={4} className={`${styles.DataForm} d-none d-md-block p-0 p-md-2`}>
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>
