@@ -14,7 +14,7 @@
     "react-dom": "^17.0.2",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -22,9 +22,7 @@
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{js,jsx,jsom}'",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,scss,md}'"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -46,13 +44,6 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.25.9",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^4.6.2",
     "msw": "^0.35.0"
   },
   "engines": {
