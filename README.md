@@ -733,10 +733,35 @@ Trigger messages provide helpful prompts to guide user interactions. For example
 .
 .
 
+
 # Future Features
-.
-.
-.
+
+#### Event Related
+- **Event Cleanup**: Automatically remove passed events to keep the calendar up-to-date and relevant.
+- **Event Categories Expansion:** Introduce more diverse event categories to cater to a wider range of activities and interests.
+- **Event Filtering:** Implement robust filtering options for events by category, ensuring users can easily find events that match their preferences.
+- **Ordering by Date:** Allow users to automatically order events based on their proximity to the current date, ensuring that upcoming events are always prioritized and easy to find.
+- **Location-based Filtering:** Allow users to filter events by region, such as country or city, making it simpler to find events nearby.
+- **Enhanced Location Input**: Refine the event location input to support counties, cities, and detailed addresses, providing greater accuracy and convenience.
+- **Event Attendance list**: On the event detail page, display lists of profiles for users who are attending or interested in the event, fostering a sense of community and interaction.
+
+#### User Experience
+- **Auto Image Resizing:** Introduce automatic image resizing for posts and events, ensuring optimal display across all devices without manual adjustments.
+
+#### Notifications and Alerts
+- **Unread Notifications Indicator:** Visually distinguish between read and unread notifications for a more intuitive user experience.
+- **Event Alerts:** Implement alerts for critical actions such as signing in/out or deleting content, ensuring users are notified of important changes.
 
 # Testing & Validation
+Comprehensive testing has been conducted on both the backend API and the frontend application. For detailed information on the testing procedures and results, please refer to the following:
+
+### Frontend Testing
+Frontend testing details can be found in the [TESTING.md](TESTING.md) file in the frontend repository.
+
+### Backend API Testing
+The backend API testing is documented in the chronicle-api [TESTING.md](https://github.com/Ahmadk-g/chronicle-api/blob/main/TESTING.md) file. 
+
+
+
+
 
