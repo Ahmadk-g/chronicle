@@ -866,6 +866,37 @@ Error messages are displayed whenever invalid input is submitted, ensuring users
 - **Unread Notifications Indicator:** Visually distinguish between read and unread notifications for a more intuitive user experience.
 - **Event Alerts:** Implement alerts for critical actions such as signing in/out or deleting content, ensuring users are notified of important changes.
 
+<br>
+
+## Reusable React Components
+These are the key reusable components used throughout the application to ensure consistency, responsiveness, and ease of use across various pages and functionalities.
+
+1. **Form**  
+   A customizable form component used for gathering user input across various sections like login, registration, and event creation.
+
+2. **Alert**  
+   Displays messages (success, error, warning) to provide feedback to the user, typically after form submissions or actions.
+
+3. **Button**  
+   A reusable button styled by React-Bootstrap used in forms, action triggers, and navigation throughout the app.
+
+4. **Image**  
+   Used for consistent image display across the app with support for responsive resizing.
+
+5. **Container, Row, Col**  
+   These components help create a responsive layout with a grid system, where Container wraps content and Row/Col define the structure for different screen sizes.
+
+6. **Modal**  
+   A dialog component used for overlay content such as confirmation dialogs or informational pop-ups, ensuring a consistent user experience for all modals.
+
+7. **Navbar**  
+   Provides a consistent navigation bar across the application, handling routing, user authentication states, and responsive design.
+
+8. **Card**  
+   A flexible component used to display content in a structured, visually appealing manner, such as posts, user profiles, or event details.
+
+<br>
+
 # Technologies used
 
 ### Frontend
