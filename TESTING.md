@@ -351,4 +351,25 @@ All Lighthouse testing was performed on the deployed website using Chrome Develo
 | Sign Up | <img src="documentation/testing/lighthouse/signup.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
 
 
+# Bugs
+During the development of the project, I have encountered several issues that remain unresolved for the time being.
+
+## Fixed Bugs
+
+1. **Event Date Not Prefilling in Edit Form**
+
+- **Issue**: The `event_date` field in the event edit form was not prefilled because the backend began representing dates in a human-readable format (e.g., `DD MMM YYYY`), while the frontend's `<input type="date">` element required the format `YYYY-MM-DD`.
+- *Solution*: Added a conversion in the frontend to format the date using `new Date(event_date).toISOString().split('T')[0]`. This ensures compatibility with the date input field.
+
+
+
+## Unfixed Bugs
+
+1. **"Free" Ticket Price not prefilling correctly in edit event form**
+
+- **Issue:** Even though the ticket price field in the edit form prefilled correctly for numeric values (e.g., `€5` converting to `5`), it did not prefill as `0` when the price was "Free". The backend represents free tickets as the string `"Free"`, and while code was added to convert `"Free"` to `0`, the field remains empty in this scenario.
+
+- **Current State:** Numeric ticket prices work as expected, but additional debugging is required to ensure `"Free"` correctly translates to 0 for the number input field.
+
+
 Back to [README.md](README.md)

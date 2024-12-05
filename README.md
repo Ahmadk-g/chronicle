@@ -734,7 +734,7 @@ Trigger messages provide helpful prompts to guide user interactions. For example
 .
 
 
-# Future Features
+# Future Features & Improvements
 
 #### Event Related
 - **Event Cleanup**: Automatically remove passed events to keep the calendar up-to-date and relevant.
@@ -744,13 +744,63 @@ Trigger messages provide helpful prompts to guide user interactions. For example
 - **Location-based Filtering:** Allow users to filter events by region, such as country or city, making it simpler to find events nearby.
 - **Enhanced Location Input**: Refine the event location input to support counties, cities, and detailed addresses, providing greater accuracy and convenience.
 - **Event Attendance list**: On the event detail page, display lists of profiles for users who are attending or interested in the event, fostering a sense of community and interaction.
+- **Events Date Validation:** Users cannot create events with past dates. This ensures that all events are scheduled for the future.
 
 #### User Experience
 - **Auto Image Resizing:** Introduce automatic image resizing for posts and events, ensuring optimal display across all devices without manual adjustments.
+- **Footer**: Footer: Add a consistent website footer across all pages, with links to important sections like "Contact" and social media profiles, ensuring users have quick access to essential information.
+- **View Password:** Users can now see their password when entering it (useful for verifying their input).
+- **Profile Deletion:** Users have the option to delete their profile from the platform, removing all their data and associated records.
 
 #### Notifications and Alerts
 - **Unread Notifications Indicator:** Visually distinguish between read and unread notifications for a more intuitive user experience.
 - **Event Alerts:** Implement alerts for critical actions such as signing in/out or deleting content, ensuring users are notified of important changes.
+
+# Technologies used
+
+### Frontend
+
+### Frontend
+
+- **HTML5**: Defines the structure and content of web pages with modern multimedia and accessibility features.
+- **CSS3**: Handles layout, styling, and animations for responsive and visually appealing designs.
+- **JavaScript**: Adds interactivity and dynamic behavior to the application.
+- **React**: Builds efficient user interfaces with component-based architecture and virtual DOM.
+- **React Bootstrap**: Integrates Bootstrap components with React for consistent and responsive designs.
+- **React Router**: Enables navigation and routing for single-page applications.
+- **Axios**: Handles HTTP requests for seamless communication with the backend.
+
+### Backend
+
+- **Django**: A robust Python framework for backend development with built-in authentication, database management, and security.
+- **Django REST Framework (DRF)**: Simplifies building RESTful APIs with features like serializers and viewsets.
+- **Python**: Powers backend logic with simplicity and versatility.
+- **SQLite / PostgreSQL**: Lightweight database for development and scalable production-ready database.
+
+### Deployment and Version Control
+- **Git**: A distributed version control system that tracks changes and collaborates across multiple developers.
+- **GitHub**: A platform for hosting Git repositories, enabling version control, collaboration, and code management.
+- **Heroku**: Cloud platform for easy deployment, scaling, and management of applications.
+- **Cloudinary**: Provides cloud-based image and video management, including upload, storage, and optimization.
+
+### Development Tools
+- **GitPod**: A cloud-based IDE that offers an environment pre-configured for your project.
+- **Django Extensions**: Extends Django’s functionalities with custom management commands and utilities.
+- **Django AllAuth**: Simplifies user authentication, including third-party social accounts.
+- **Balsamiq**: A wireframing tool for quickly creating mockups and UI designs.
+- **dbdiagram**: A tool for designing and visualizing database schema and ERD.
+
+### Security
+- **Django AllAuth**: Manages user registration, authentication, and third-party logins securely.
+- **Data Encryption**: Ensures user data and sensitive information are encrypted at rest and in transit.
+- **CSRF Tokens**: Safeguards forms against Cross-Site Request Forgery by validating the origin of requests.
+
+### Others
+- **React Infinite Scroll Component**: Implements infinite scrolling for large datasets to enhance user experience.
+- **Custom Hooks**: Provides reusable hooks like `useRedirect` to handle app-specific logic.
+- **Font Awesome**: A library of scalable icons for enhancing the user interface.
+- **Favicon.io**: Generates custom favicon icons for the website.
+- **Adobe lightroom**: A tool used for compressing images and reducing file sizes without losing quality.
 
 # Testing & Validation
 Comprehensive testing has been conducted on both the backend API and the frontend application. For detailed information on the testing procedures and results, please refer to the following:
@@ -761,7 +811,153 @@ Frontend testing details can be found in the [TESTING.md](TESTING.md) file in th
 ### Backend API Testing
 The backend API testing is documented in the chronicle-api [TESTING.md](https://github.com/Ahmadk-g/chronicle-api/blob/main/TESTING.md) file. 
 
+# Deployment 
+
+The "Chronicle" project uses various platforms and services for deployment and management.
+
+For hosting and running the application, **Heroku** is utilized. Heroku is a cloud platform that makes deployment seamless, offering auto-scaling and monitoring tools to ensure smooth operation. The **Code Institute (CI)** provides PostgreSQL for database hosting during the development and deployment phases.
+
+Additionally, **Cloudinary** is used to handle images and media, offering an efficient solution for storing, optimizing, and serving media assets for the "Chronicle" platform.
+
+## **Github**
+**Repository Setup**: [GitHub](https://github.com) serves as the version control system, hosting the project codebase and facilitating collaboration.  
+
+## Gitpod
+**Development Environment**: [Gitpod](https://www.gitpod.io/) provides a cloud-based IDE, offering a pre-configured workspace to streamline development.  
+
+### **CI Database** (PostgreSQL): 
+The Code Institute provides PostgreSQL-based database systems for students, offering reliable data storage and management during development and deployment. The database offers a stable environment for students to develop and manage real-world applications.
+
+
+### **Cloudinary**:
+To improve performance and scalability, the project uses [Cloudinary](https://cloudinary.com/) for hosting media files like images. This offloads the task of serving static content from Heroku, optimizing both storage and delivery. 
+  
+
+## Heroku
+
+**Application Hosting**: [Heroku](https://www.heroku.com) hosts and runs the application with easy deployment, automatic scaling, and management tools for monitoring.  
+  
+
+__Steps for deploying with Heroku__:
+
+1. **Log into Heroku**: Navigate to the Heroku website and log into your account to access the dashboard.
+2. **Create a New App**:
+  - Click the "New" button in the top-right corner and select "Create New App" from the dropdown menu.
+  - Choose a unique name for your app that will be used as part of the URL.
+  - Choose the preferred region for your app, either "United States" or "Europe", from the dropdown menu.
+  - click the "Create App" button to create the app.
+6. **Connect to GitHub**:
+  - In the app’s dashboard, go to the "Deploy" tab, scroll down to "Deployment Method", and select "GitHub" as the source.
+  - Connect your GitHub repository with Heroku.
+7. **Go to Settings**: Navigate to the "Settings" tab in the top menu.
+8. **Set Up Environment Variables**: Under the "Config Vars" section, click the "Reveal Config Vars" button and add the following keys and values:
+- `SECRET_KEY`: The secret key for your Django project.
+- `DATABASE_URL`: The URL for your database (e.g., Heroku Postgres).
+- `CLOUDINARY_URL`: The URL for your Cloudinary account (for media storage).
+9. **Enable Automatic Deploys**: In the "Deploy" section, enable automatic deploys from your GitHub repository. This will allow Heroku to automatically update your app whenever new changes are pushed to the repository.
+10. **Manual Deployment**: In case of manual deployment, choose the specific `branch` (e.g., main) of your GitHub repository that you want to deploy. Afterwards, click on the`Deploy Branch* button,
+
+You can see how HEROKU build your version of the website by looks on `building logs` in the activity menu item.
+
+Once the deployment is successful, Heroku will provide a URL to access your application. Click on "Open App" in the Heroku dashboard to view your live site.
+
+
+**For deployment, Heroku needs two additional files in order to deploy properly.**
+- **requirements.txt**:
+    - You can update the requirements file after installing more packages with the command:
+    ```bash
+    pip3 freeze --local > requirements.txt
+    ```
+    - You can install this project'S requirements using:
+    ```bash
+    pip3 install -r requirements.txt
+    ```
+
+- **Procfile**, which can be created with the following steps:
+    1. echo web: gunicorn app_name.wsgi > Procfile
+    2. replace app_name with the name of your primary Django app name; the folder where settings.py is located
+
+
+# Cloning and Forking
+
+## Cloning the Repository
+
+To set up a local copy of the "**Chronicle**" project, follow these steps:
+
+### 1. Clone the Repository:
+   Clone from [Chronicle GitHub Repository](https://github.com/Ahmadk-g/chronicle).
+   ```bash
+   git clone https://github.com/Ahmadk-g/chronicle
+   ```
+
+### 2. Navigate to the project directory:
+    ```sh
+    cd chronicle
+    ```
+
+### 3. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+### 3. Start development server :
+    ```sh
+    npm start
+    ```
+    The app will be available at http://localhost:3000.
+
+
+## Forking the Repository
+
+To contribute or create your own version of the **Chronicle** project, follow these steps:
+
+### 1. Fork the repository
+Go to the [Chronicle GitHub repository](https://github.com/Ahmadk-g/chronicle) and click on the **Fork** button in the top-right corner of the page. This will create a copy of the repository under your own GitHub account.
+
+### 2. Clone your forked repository
+Once the repository is forked, clone it to your local machine using the following command:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/chronicle.git
+```
+Replace YOUR_USERNAME with your GitHub username.
+
+### 3. Navigate to project directory:
+```bash
+cd chronicle
+```
+
+### 4. Install Dependencies
+```bash
+npm install
+```
+
+### 5. Start the development server
+```bash
+npm start
+```
+This will start the React app on your local machine, typically available at http://localhost:3000.
+
+### 6. Make changes and commit them
+### 7. Push your changes
+### 8. Create a pull request
+
+# Credits
+
+## code
+
+https://dev.to/vivek_44751fc408644cbd80b/how-to-use-the-tag-with-multiple-values-using-the-map-method-in-reactjs-59df for getting event type choices
+or https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
 
 
 
 
+
+
+
+## media
+
+1. Logo from https://logo.com/
+2. Post pics from Pexels
+3. adobe Lightroom image size reduction
+4. Imageresizer.com
