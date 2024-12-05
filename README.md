@@ -7,20 +7,23 @@
 
 Link to live website: [CLICK HERE!](https://chronicle-ci-fad840fb8771.herokuapp.com/)
 
-(**Responsive Image**)
+<div align="center">
+  <img src="documentation/responsive.png" alt="Responsive Image" style="width: 800px; height: auto;" >
+</div>  
+
+<br>
 
 [Chronicle Django Rest Framework API Backend Live Link](https://chronicle-api-8dba6c70f37d.herokuapp.com/)
+
 [Chronicle Backend Github Repo](https://github.com/Ahmadk-g/chronicle-api)
 
 
-# Introduction
+## Introduction
 
 Welcome to Chronicle, a vibrant social platform where connections come to life! Chronicle is designed to bring people together through shared stories, engaging posts, and memorable events. Whether you’re here to connect with others, showcase your experiences, or discover inspiring content, Chronicle is your go-to destination for meaningful social engagement.
 
-<h3>What You Can Do</h3>
 
 **With Chronicle, you can:**
-
 - Share your stories through posts and media.
 - Discover and join exciting events in your community.
 - Interact with others through likes, comments, and follows.
@@ -29,12 +32,13 @@ Welcome to Chronicle, a vibrant social platform where connections come to life! 
 
 Our frontend is built using React to ensure a sleek and responsive interface that provides users with an intuitive and enjoyable experience. It seamlessly integrates with a powerful Django backend, enabling robust and reliable functionality.
 
-<h3>Join the Chronicle Community</h3>
+**Join the Chronicle Community**
+
 Dive into Chronicle today and become part of a thriving community! Whether you're here to create, connect, or simply explore, Chronicle has something for everyone. Share your voice, engage with others, and be inspired. Together, let’s make every moment count.
 
 <br>
 
-# UX - User Experience
+## UX - User Experience
 
 Chronicle is designed to provide an intuitive, engaging, and inclusive experience for users who want to connect, share, and explore. Our platform prioritizes seamless interaction, personalization, and accessibility, ensuring a delightful journey for all. Here's how Chronicle delivers an exceptional user experience:
 
@@ -60,9 +64,9 @@ Chronicle’s UX is crafted to empower users to connect, share, and explore in a
 
 <br>
 
-# Design
+## Design
 
-## Color Scheme
+### Color Scheme
 
 The color palette used across the site is inspired by the vibrant tones of our logo, creating a visually cohesive and engaging experience. To enhance usability and guide user interaction, different shades of these core colors are applied strategically throughout the app. From subtle background hues to dynamic hover effects, each color and shade is chosen to complement the design and improve user experience based on context and functionality. 
 
@@ -84,8 +88,9 @@ Below is a breakdown of the primary colors and their contextual usage:
 
 Text colors are also dynamically adjusted to ensure strong contrast and optimal readability across various backgrounds. This thoughtful approach ensures a harmonious and accessible interface, while maintaining consistency with the brand's identity.
 
+---
 
-## Fonts
+### Fonts
 
 The primary font used throughout the site is **DM Sans**, which provides a clean and modern look, enhancing readability and aesthetics. 
 
@@ -97,16 +102,16 @@ To ensure consistency, **sans-serif** is designated as a backup font, serving as
 
 ## Scope Plane
 
-### Purpose and Goal
+#### Purpose and Goal
 Chronicle is a modern social media platform designed to bring communities closer by enabling users to share posts, create events, and interact seamlessly with others. It empowers users to connect, engage, and stay updated on topics and activities that matter most to them. The goal is to provide a vibrant, inclusive, and interactive digital space that fosters meaningful connections, creativity, and collaboration.
 
-### Target Audience
+#### Target Audience
 - **Social Enthusiasts**: Individuals who enjoy sharing posts, following trends, and staying connected with friends and communities.
 - **Event Organizers**: Users looking for a platform to promote, manage, and engage attendees for events.
 - **Content Creators**: Those who wish to share creative content and interact with a wide audience.
 - **Community Builders**: Users passionate about fostering relationships and engaging with like-minded individuals.
 
-### User Needs
+#### User Needs
 - Effortless sharing of posts and events to express ideas and creativity.
 - Reliable notifications to stay informed about interactions and upcoming activities.
 - User-friendly tools to discover and RSVP to events.
@@ -114,7 +119,7 @@ Chronicle is a modern social media platform designed to bring communities closer
 - A seamless way to engage with posts, events, and other users via likes, comments, and follows.
 - An intuitive and responsive interface accessible on all devices.
 
-### Features
+#### Key Features
 - **Post Sharing**: Create, edit, and delete posts with text, images, or media attachments.
 - **Engagement Tools**: Interact with content through likes, comments, and follows.
 - **Event Management**: Create, RSVP to, and manage events.
@@ -151,6 +156,8 @@ To manage priorities and allocate resources effectively, the MoSCoW method was u
 A Kanban board was utilized for visualizing the workflow, tracking the status of user stories, and ensuring efficient task management. The board highlights tasks in various stages: To Do, In Progress, and Completed, promoting transparency and streamlined development.
 
 You can view the project's Kanban board [here](https://github.com/users/Ahmadk-g/projects/5).
+
+---
 
 Below is an outline of the Epics and their respective User Stories implemented in the project:
 
@@ -220,16 +227,16 @@ Encapsulates user connections (following/unfollowing) and notification systems t
 ### Information Architecture
 
 1. **Navigation**
-
-    - **Primary Navigation:** Links to the Home page and Events page
-        - **Registered Users:** Links to the posts feed page, liked posts page, Notifications page, Profile page, and Sign-out
-        - **Unregistered Users:** Links to Sign-in/Sign-up pages
+    - **NavBar**: Fixed on every page with links to essential pages.
+    - **Primary Links:** Links to the Home page and Events page
+    - **Registered Users:** Links to the posts feed page, liked posts page, Notifications page, Profile page, and Sign-out
+    - **Unregistered Users:** Links to Sign-in/Sign-up pages
 
 2. **Home Page**
 
     - Overview of the platform
-    - NavBar with links to essential pages
     - List of posts displayed in reverse chronological order (most recent first)
+    - Links to individual post detail pages for further engagement.
     - Search bar for finding posts
     - Most popular profiles container
 
@@ -294,6 +301,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design the site wirefra
 ![wireframes](documentation/wireframes/logged-inhome.png)
 </details>
 
+<br>
 
 **My Feed, My likes Page Wireframes**
 <details>
@@ -305,6 +313,8 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design the site wirefra
 ![wireframes](documentation/wireframes/feed-liked.png)
 </details>
 
+<br>
+
 **Post Detail Page Wireframes**
 <details>
 <summary>"Click to View Post Detail Page Wireframes"</summary>
@@ -314,6 +324,8 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design the site wirefra
 
 ![wireframes](documentation/wireframes/detail-view.png)
 </details>
+
+<br>
 
 **Events, My Events Page Wireframes**
 <details>
@@ -325,6 +337,8 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design the site wirefra
 ![wireframes](documentation/wireframes/events-myevents.png)
 </details>
 
+<br>
+
 **Notifications Page Wireframes**
 <details>
 <summary>"Click to View Notifications Page Wireframes"</summary>
@@ -334,6 +348,8 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design the site wirefra
 
 ![wireframes](documentation/wireframes/notifications.png)
 </details>
+
+<br>
 
 **Add and Edit Post Page Wireframes**
 <details>
@@ -346,6 +362,8 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design the site wirefra
 </details>
 
 The Event Creation and Edit pages are similar but with a different form.
+
+<br>
 
 **Profile Page Wireframes**
 <details>
@@ -446,6 +464,53 @@ Security is essential for protecting user data and platform integrity.
 
 This ensures a secure experience for all users on the platform.
 
+## CRUD Functionalities
+
+The "Chronicle" project, built with a React frontend and Django REST framework backend, leverages Django's robust tools to manage Create, Read, Update, and Delete (CRUD) functionalities securely and efficiently.
+
+### Posts:
+- **Create**: Post new content (text, images, media).
+- **Read**: View posts.
+- **Update**: Edit post content.
+- **Delete**: Delete posts.
+
+### Events:
+- **Create**: Create events.
+- **Read**: View event details.
+- **Update**: Edit event details.
+- **Delete**: Delete events.
+
+### Profiles:
+- **Create**: Set up profile (details, photo).
+- **Read**: View profiles.
+- **Update**: Edit profile info.
+- **Delete**: Delete profile.
+
+### Followers:
+- **Create**: Follow users.
+- **Read**: View followers/following.
+- **Delete**: Unfollow users.
+
+### Likes:
+- **Create**: Like posts.
+- **Read**: View likes.
+- **Delete**: Unlike posts.
+
+### Comments:
+- **Create**: Comment on posts.
+- **Read**: View comments.
+- **Update**: Edit comments.
+- **Delete**: Delete comments.
+
+### Attendances:
+- **Create**: Mark event attendance.
+- **Read**: View attendance lists.
+- **Update**: Change attendance status.
+- **Delete**: Remove attendance.
+
+---
+
+<br>
 
 # Features
 
@@ -593,7 +658,7 @@ The Post Detail page offers a comprehensive view of the post, with options for t
 
 </details>
 
-## User Specific Features
+### **User Specific Features**
 
 ### My profile
 
@@ -660,7 +725,7 @@ Once the Notifications page is opened, all notifications are marked as read, and
 
 </details>
 
-## Add & Edit Content
+### Add & Edit Content
 
 This feature includes forms for adding new posts and events. The edit form is identical to the add form, but prefilled with the existing model data, allowing users to modify content easily.
 
@@ -677,7 +742,7 @@ This feature includes forms for adding new posts and events. The edit form is id
 
 </details>
 
-## Interactive Features
+### Interactive Features
 
 The interactive features allow users to engage with content by liking and unliking posts, commenting (with options to edit or delete), marking event attendance as "Interested" or "Attending," and following or unfollowing other users, enhancing the overall user experience and social interaction on the platform.
 
@@ -713,7 +778,7 @@ The 'attending' button is active in this picture:
 
 </details>
 
-## Trigger messages
+### Trigger messages
 Trigger messages provide helpful prompts to guide user interactions. For example, when an unregistered user attempts to like a post, an overlay message appears on hover, notifying them that they need to sign in to perform this action.
 
 <details>
@@ -728,10 +793,43 @@ Trigger messages provide helpful prompts to guide user interactions. For example
 </details>
 
 
-## Authentication pages
-.
-.
-.
+### Authentication pages
+The Authentication pages allow users to register and log in securely to access personalized content and features on the platform. The Sign Up page facilitates account creation, while the Sign In page ensures secure access for existing users.
+
+<details>
+<summary><strong>Click to View Auth Pages</strong></summary>
+
+Sign Up Page
+
+<img src="documentation/features/auth/signup.png" alt="Features" style="width: 250px; height: auto;">
+
+Sign In Page
+
+<img src="documentation/features/auth/signin.png" alt="Features" style="width: 250px; height: auto;">
+
+</details>
+
+### Spinner
+A loading spinner appears as the data is being fetched.
+
+<details>
+<summary><strong>Click to View Loading Spinner</strong></summary>
+
+<img src="documentation/features/spinner.png" alt="Features" style="width: 250px; height: auto;">
+
+</details>
+
+### Not Found 
+When a user enters an invalid URL, a dedicated Not Found page is displayed with a message indicating that the requested page could not be found. 
+
+<details>
+<summary><strong>Click to View page</strong></summary>
+
+<img src="documentation/features/notfound.png" alt="Features" style="width: 250px; height: auto;">
+
+</details>
+
+
 
 
 # Future Features & Improvements
@@ -762,45 +860,56 @@ Trigger messages provide helpful prompts to guide user interactions. For example
 
 ### Frontend
 
-- **HTML5**: Defines the structure and content of web pages with modern multimedia and accessibility features.
-- **CSS3**: Handles layout, styling, and animations for responsive and visually appealing designs.
-- **JavaScript**: Adds interactivity and dynamic behavior to the application.
-- **React**: Builds efficient user interfaces with component-based architecture and virtual DOM.
-- **React Bootstrap**: Integrates Bootstrap components with React for consistent and responsive designs.
-- **React Router**: Enables navigation and routing for single-page applications.
-- **Axios**: Handles HTTP requests for seamless communication with the backend.
+- [**HTML5**](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5): Defines the structure and content of web pages with modern multimedia and accessibility features.
+- [**CSS3**](https://developer.mozilla.org/en-US/docs/Web/CSS): Handles layout, styling, and animations for responsive and visually appealing designs.
+- [**JavaScript**](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Adds interactivity and dynamic behavior to the application.
+- [**React**](https://reactjs.org/): Builds efficient user interfaces with component-based architecture and virtual DOM.
+- [**React Bootstrap**](https://react-bootstrap.github.io/): Integrates Bootstrap components with React for consistent and responsive designs.
+- [**React Router**](https://reactrouter.com/): Enables navigation and routing for single-page applications.
+- [**Axios**](https://axios-http.com/): Handles HTTP requests for seamless communication with the backend.
 
 ### Backend
 
-- **Django**: A robust Python framework for backend development with built-in authentication, database management, and security.
-- **Django REST Framework (DRF)**: Simplifies building RESTful APIs with features like serializers and viewsets.
-- **Python**: Powers backend logic with simplicity and versatility.
-- **SQLite / PostgreSQL**: Lightweight database for development and scalable production-ready database.
+- [**Django**](https://www.djangoproject.com/): A robust Python framework for backend development with built-in authentication, database management, and security.
+- [**Django REST Framework (DRF)**](https://www.django-rest-framework.org/): Simplifies building RESTful APIs with features like serializers and viewsets.
+- [**Python**](https://www.python.org/): Powers backend logic with simplicity and versatility.
+- [**SQLite**](https://www.sqlite.org/index.html) / **PostgreSQL**: Lightweight database for development and scalable production-ready database.
 
 ### Deployment and Version Control
-- **Git**: A distributed version control system that tracks changes and collaborates across multiple developers.
-- **GitHub**: A platform for hosting Git repositories, enabling version control, collaboration, and code management.
-- **Heroku**: Cloud platform for easy deployment, scaling, and management of applications.
-- **Cloudinary**: Provides cloud-based image and video management, including upload, storage, and optimization.
+- [**Git**](https://git-scm.com/): A distributed version control system that tracks changes and collaborates across multiple developers.
+- [**GitHub**](https://github.com/): A platform for hosting Git repositories, enabling version control, collaboration, and code management.
+- [**Heroku**](https://www.heroku.com/): Cloud platform for easy deployment, scaling, and management of applications.
+- [**Cloudinary**](https://cloudinary.com/): Provides cloud-based image and video management, including upload, storage, and optimization.
 
 ### Development Tools
-- **GitPod**: A cloud-based IDE that offers an environment pre-configured for your project.
-- **Django Extensions**: Extends Django’s functionalities with custom management commands and utilities.
-- **Django AllAuth**: Simplifies user authentication, including third-party social accounts.
-- **Balsamiq**: A wireframing tool for quickly creating mockups and UI designs.
-- **dbdiagram**: A tool for designing and visualizing database schema and ERD.
+- [**GitPod**](https://www.gitpod.io/): A cloud-based IDE that offers an environment pre-configured for your project.
+- [**Django Extensions**](https://github.com/django-extensions/django-extensions): Extends Django’s functionalities with custom management commands and utilities.
+- [**Django AllAuth**](https://django-allauth.readthedocs.io/en/latest/): Simplifies user authentication, including third-party social accounts.
+- [**Balsamiq**](https://balsamiq.com/wireframes/): A wireframing tool for quickly creating mockups and UI designs.
+- [**dbdiagram**](https://dbdiagram.io/home): A tool for designing and visualizing database schema and ERD.
 
 ### Security
 - **Django AllAuth**: Manages user registration, authentication, and third-party logins securely.
 - **Data Encryption**: Ensures user data and sensitive information are encrypted at rest and in transit.
 - **CSRF Tokens**: Safeguards forms against Cross-Site Request Forgery by validating the origin of requests.
 
+### Validation Tools
+
+- [JS validation](https://jshint.com/): For Validating JavaScript code.
+- [W3C CSS Validation Service](https://validator.w3.org/): For validating CSS code.
+- [HTML W3C Markup Validator](https://validator.w3.org/): For validating HTML code.
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview): For website accessibility testing.
+
 ### Others
-- **React Infinite Scroll Component**: Implements infinite scrolling for large datasets to enhance user experience.
+- [**React Infinite Scroll Component**](https://github.com/ankeetmaini/react-infinite-scroll-component): Implements infinite scrolling for large datasets to enhance user experience.
 - **Custom Hooks**: Provides reusable hooks like `useRedirect` to handle app-specific logic.
-- **Font Awesome**: A library of scalable icons for enhancing the user interface.
-- **Favicon.io**: Generates custom favicon icons for the website.
-- **Adobe lightroom**: A tool used for compressing images and reducing file sizes without losing quality.
+- [**Font Awesome**](https://fontawesome.com/): A library of scalable icons for enhancing the user interface.
+- [**Favicon generator**](https://www.favicon-generator.org/to): Generates different sizes of favicons.
+- [**Adobe lightroom**](https://lightroom.adobe.com/): A tool used for compressing images and reducing file sizes without losing quality.
+- [**Imageresizer**](https://imageresizer.com/): Website and tool for compressing image size.
+- [**logo**](https://logo.com/): Website for creating your own logo
+
+
 
 # Testing & Validation
 Comprehensive testing has been conducted on both the backend API and the frontend application. For detailed information on the testing procedures and results, please refer to the following:
@@ -946,18 +1055,66 @@ This will start the React app on your local machine, typically available at http
 
 ## code
 
-https://dev.to/vivek_44751fc408644cbd80b/how-to-use-the-tag-with-multiple-values-using-the-map-method-in-reactjs-59df for getting event type choices
-or https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+During the development of the Chronicle API application, several valuable resources were used for inspiration and knowledge:
+
+**The Chronicle API project draws inspiration from the following sources:**
+  - **Code Institute's "Django Rest Framework" Walkthrough Project:**
+  This resource provided a crucial foundation for building the API. It helped me understand the principles of building a RESTful API using Django Rest Framework (DRF), including serialization, authentication, and endpoints. The walkthrough was key in setting up the core structure of the API and understanding best practices for backend development.
+  It provided the essential features such as user profiles, posts, comments, likes, and followers. 
+
+  - **Code Institute's "Moments" Walkthrough Project:** While this was primarily used as a reference for the front-end, the concepts and structure from Moments also inspired some of the API endpoints and how data is managed and structured for the Chronicle API.
+---
 
 
+**React**
 
+- [Using CSS Modules](https://medium.com/@ralph1786/using-css-modules-in-react-app-c2079eadbb87)
+- [React Functional Components VS Class Components](https://articles.wesionary.team/react-functional-components-vs-class-components-86a2d2821a22)
+- [React Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction/)
 
+- [DEV Community](https://dev.to/vivek_44751fc408644cbd80b/how-to-use-the-tag-with-multiple-values-using-the-map-method-in-reactjs-59df)
 
+**Django REST framework**
 
+- [Django REST framework](https://www.django-rest-framework.org/)
+
+**Code Institute Template**
+
+- [Code Institute Template](https://github.com/Code-Institute-Org/ci-full-template)
+- [Setting up basic Django Project with Cloudinary](https://docs.google.com/document/d/1LCLxWhmW_4VTE4GXsnHgmPUwSPKNT4KyMxSH8agbVqU/edit#heading=h.mpopj7v69qqn)
+
+<br>
 
 ## media
 
-1. Logo from https://logo.com/
-2. Post pics from Pexels
-3. adobe Lightroom image size reduction
-4. Imageresizer.com
+Media elemets for the site were gathered, managed, or edited through these platforms:
+
+- [**Favicon-generator**:](https://www.favicon-generator.org/to) Used to create various sizes of the favicon for compatibility across different devices and platforms.
+- [**Font Awesome:**](https://fontawesome.com/) Provided the icons used throughout the website.
+- [**Balsamiq**:](https://balsamiq.com/wireframes/) To design site's wireframe.
+- [**dbdiagram**:](https://dbdiagram.io/d) to design site's database schema (ERD).
+- [am i responsive:](https://ui.dev/amiresponsive) was used to get a responsive image for README.
+- [**Favicon generator**](https://www.favicon-generator.org/to): Generates different sizes of favicons.
+- [**logo**](https://logo.com/): Website for creating your own logo
+- [**Pexels**](https://www.pexels.com/discover/): Sourced all content pictures.
+
+
+## Readme and Testing Inpiration
+
+- [Readme and Testing by Swathi Keshavamurthy](https://github.com/SwathiKeshavamurthy/fitandfine-react-p5)
+- [Readme and Testing by Amir Shkolnik](https://github.com/AmirShkolnik/DivingCenter)
+- [Readme and Testing by AlAliMazen](https://github.com/AlAliMazen/tech-roadmap/)
+
+## Acknowlegements
+
+The development of the Chronicle project has been an enriching experience, and I am sincerely grateful for the guidance, resources, and encouragement that have been essential in bringing this project to fruition.
+
+- Juliia Konovalova, my Code Institute mentor, whose insightful guidance and unwavering support helped me overcome numerous challenges.
+
+- Kristyna, our facilitator at Code Institute, whose positivity and constant encouragement made all the difference during the more difficult moments.
+
+- To my classmates, for their camaraderie and inspiration, and for offering help whenever things seemed daunting. Your support was invaluable.
+
+- Most importantly, my partner Siba, for always being there for me throughout this entire course. Your unwavering support and encouragement made this journey much smoother.
+
+Thank you to everyone who contributed to this journey, whether through direct assistance or by simply providing motivation.

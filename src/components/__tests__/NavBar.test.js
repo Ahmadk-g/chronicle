@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+// import Dropdown from 'react-bootstrap/Dropdown';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import {
   CurrentUserProvider,
@@ -10,7 +10,7 @@ import {
 import NavBar from '../NavBar';
 import axios from 'axios';
 import { axiosReq, axiosRes } from '../../api/AxiosDefaults';
-import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter
+// import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter
 
 jest.mock('axios');
 jest.mock('../../api/AxiosDefaults', () => {
