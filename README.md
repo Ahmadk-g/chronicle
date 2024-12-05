@@ -801,11 +801,11 @@ The Authentication pages allow users to register and log in securely to access p
 
 Sign Up Page
 
-<img src="documentation/features/auth/signup.png" alt="Features" style="width: 250px; height: auto;">
+<img src="documentation/features/auth/signup.png" alt="Features" style="width: 600px; height: auto;">
 
 Sign In Page
 
-<img src="documentation/features/auth/signin.png" alt="Features" style="width: 250px; height: auto;">
+<img src="documentation/features/auth/signin.png" alt="Features" style="width: 600px; height: auto;">
 
 </details>
 
@@ -815,7 +815,7 @@ A loading spinner appears as the data is being fetched.
 <details>
 <summary><strong>Click to View Loading Spinner</strong></summary>
 
-<img src="documentation/features/spinner.png" alt="Features" style="width: 250px; height: auto;">
+<img src="documentation/features/spinner.png" alt="Features" style="width: 600px; height: auto;">
 
 </details>
 
@@ -825,12 +825,24 @@ When a user enters an invalid URL, a dedicated Not Found page is displayed with 
 <details>
 <summary><strong>Click to View page</strong></summary>
 
-<img src="documentation/features/notfound.png" alt="Features" style="width: 250px; height: auto;">
+<img src="documentation/features/notfound.png" alt="Features" style="width: 600px; height: auto;">
+
+</details>
+
+### Input Error Messages
+Error messages are displayed whenever invalid input is submitted, ensuring users are informed about issues and can correct their submissions quickly. 
+
+<details>
+<summary><strong>Click to View page</strong></summary>
+
+<img src="documentation/features/error1.png" alt="Features" style="width: 600px; height: auto;">
+
+<img src="documentation/features/error2.png" alt="Features" style="width: 600px; height: auto;">
 
 </details>
 
 
-
+<br>
 
 # Future Features & Improvements
 
@@ -993,63 +1005,67 @@ Once the deployment is successful, Heroku will provide a URL to access your appl
 
 To set up a local copy of the "**Chronicle**" project, follow these steps:
 
-### 1. Clone the Repository:
+#### 1. Clone the Repository:
    Clone from [Chronicle GitHub Repository](https://github.com/Ahmadk-g/chronicle).
    ```bash
    git clone https://github.com/Ahmadk-g/chronicle
    ```
 
 ### 2. Navigate to the project directory:
-    ```sh
+    ```bash
     cd chronicle
     ```
 
 ### 3. Install dependencies:
-    ```sh
+    ```bash
     npm install
     ```
 
 ### 3. Start development server :
-    ```sh
+    ```bash
     npm start
     ```
-    The app will be available at http://localhost:3000.
+
+
+The app will be available at http://localhost:3000.
 
 
 ## Forking the Repository
 
 To contribute or create your own version of the **Chronicle** project, follow these steps:
 
-### 1. Fork the repository
+1. **Fork the repository**
 Go to the [Chronicle GitHub repository](https://github.com/Ahmadk-g/chronicle) and click on the **Fork** button in the top-right corner of the page. This will create a copy of the repository under your own GitHub account.
 
-### 2. Clone your forked repository
-Once the repository is forked, clone it to your local machine using the following command:
+2. **Clone your forked repository**
+  Once the repository is forked, clone it to your local machine using the following command:
 
-```bash
-git clone https://github.com/YOUR_USERNAME/chronicle.git
-```
-Replace YOUR_USERNAME with your GitHub username.
+  ```bash
+  git clone https://github.com/YOUR_USERNAME/chronicle.git
+  ```
 
-### 3. Navigate to project directory:
-```bash
-cd chronicle
-```
+  Replace YOUR_USERNAME with your GitHub username.
 
-### 4. Install Dependencies
-```bash
-npm install
-```
+3. **Navigate to project directory**
+  ```bash
+  cd chronicle
+  ```
 
-### 5. Start the development server
-```bash
-npm start
-```
-This will start the React app on your local machine, typically available at http://localhost:3000.
+4. **Install Dependencies**
+  ```bash
+  npm install
+  ```
 
-### 6. Make changes and commit them
-### 7. Push your changes
-### 8. Create a pull request
+5. **Start the development server**
+  ```bash
+  npm start
+  ```
+
+  This will start the React app on your local machine, typically available at http://localhost:3000.
+
+6. **Make changes and commit them**
+7. **Push your changes**
+8. **Create a pull request**
 
 # Credits
 
