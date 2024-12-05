@@ -44,7 +44,6 @@ const Notification = (props) => {
           <div className="mx-1">
             <span>{message}</span>
           </div>
-          {/* <div>{message}</div> */}
           {post && (
             <div>
               <Link to={`/posts/${post}`} className="align-self-center mx-1">

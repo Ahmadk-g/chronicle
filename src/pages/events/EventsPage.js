@@ -57,7 +57,7 @@ function EventsPage({ message, filter = '' }) {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <div className="text-center mb-3">
           {pathname === '/myevents' ? (
-            <h3 className="text-muted">Events You've Marked</h3>
+            <h3 className="text-muted">Events You Marked</h3>
           ) : (
             <h2 className="text-muted">Events</h2>
           )}
