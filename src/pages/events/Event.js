@@ -312,7 +312,7 @@ const Event = (props) => {
                 placement="top"
                 overlay={<Tooltip>Log in to mark attendance!</Tooltip>}
               >
-                <Button className={styles.ButtonOutline} onClick={() => {}}>
+                <Button className={styles.ButtonDisabled} variant="secondary" disabled>
                   Interested
                   <span style={{ marginLeft: '10px' }}>{interested_count}</span>
                 </Button>
@@ -365,7 +365,7 @@ const Event = (props) => {
                 placement="top"
                 overlay={<Tooltip>Log in to mark attendance!</Tooltip>}
               >
-                <Button className={styles.ButtonOutline} onClick={() => {}}>
+                <Button className={styles.ButtonDisabled} variant="secondary" disabled>
                   Attending
                   <span style={{ marginLeft: '15px' }}>{attending_count}</span>
                 </Button>
