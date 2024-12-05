@@ -326,3 +326,29 @@ Each folder of the project includes the corresponding validation results, docume
 - #### index.js
 
 ![JS Validation](documentation/testing/js/index.png)
+
+
+## Lighthouse
+
+All Lighthouse testing was performed on the deployed website using Chrome Developer Tools Lighthouse Report.
+
+| Page | Results |
+|------|---------|
+| Home | <img src="documentation/testing/lighthouse/homepage.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Events | <img src="documentation/testing/lighthouse/events.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Post Detail page | <img src="documentation/testing/lighthouse/postdetail.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Event Detail page | <img src="documentation/testing/lighthouse/eventdetail.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Notifications | <img src="documentation/testing/lighthouse/notifications.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Profile page | <img src="documentation/testing/lighthouse/profilepage.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| My Feed | <img src="documentation/testing/lighthouse/myfeed.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| My Likes | <img src="documentation/testing/lighthouse/mylikes.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| My Events | <img src="documentation/testing/lighthouse/myevent.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Add Post | <img src="documentation/testing/lighthouse/createpost.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Add Event | <img src="documentation/testing/lighthouse/createevent.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Edit Post | <img src="documentation/testing/lighthouse/postedit.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Edit Event | <img src="documentation/testing/lighthouse/eventedit.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Sign In | <img src="documentation/testing/lighthouse/signin.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+| Sign Up | <img src="documentation/testing/lighthouse/signup.png" alt="Lighthouse" style="width: 600px; height: auto;"> |
+
+
+Back to [README.md](README.md)
